@@ -1,0 +1,153 @@
+{
+    "levels": [
+      {
+        "level": "Beginner",
+        "instructors": [
+          {
+            "name": "John Smith",
+            "videos": [
+              "Introduction to Programming",
+              "Variables and Data Types",
+              "Control Structures"
+            ]
+          },
+          {
+            "name": "Emily Johnson",
+            "videos": [
+              "Getting Started with HTML",
+              "Basic HTML Tags",
+              "Building Your First Webpage"
+            ]
+          },
+          {
+            "name": "Michael Brown",
+            "videos": [
+              "Introduction to CSS",
+              "Styling with CSS",
+              "Building Responsive Websites"
+            ]
+          },
+          {
+            "name": "Olivia Taylor",
+            "videos": [
+              "Responsive Design Fundamentals",
+              "Basic JavaScript Concepts",
+              "Debugging in the Browser"
+            ]
+          }
+        ]
+      },
+      {
+        "level": "Intermediate",
+        "instructors": [
+          {
+            "name": "Sarah Davis",
+            "videos": [
+              "JavaScript Basics",
+              "Functions and Loops",
+              "Introduction to DOM Manipulation"
+            ]
+          },
+          {
+            "name": "David Wilson",
+            "videos": [
+              "Intermediate HTML & CSS",
+              "Flexbox and Grid Layout",
+              "Advanced Responsive Design"
+            ]
+          },
+          {
+            "name": "Laura Martinez",
+            "videos": [
+              "Working with APIs",
+              "Asynchronous JavaScript",
+              "Building Dynamic Web Applications"
+            ]
+          },
+          {
+            "name": "James Parker",
+            "videos": [
+              "CSS Animations",
+              "JavaScript Object-Oriented Programming",
+              "Handling Events in JavaScript"
+            ]
+          }
+        ]
+      },
+      {
+        "level": "Upper Intermediate",
+        "instructors": [
+          {
+            "name": "James Anderson",
+            "videos": [
+              "Advanced JavaScript Concepts",
+              "ES6+ Features",
+              "Functional Programming in JavaScript"
+            ]
+          },
+          {
+            "name": "Sophia White",
+            "videos": [
+              "React Basics",
+              "State and Props in React",
+              "Building a React Application"
+            ]
+          },
+          {
+            "name": "Christopher Lewis",
+            "videos": [
+              "Node.js Basics",
+              "Building REST APIs with Express",
+              "Database Integration with MongoDB"
+            ]
+          },
+          {
+            "name": "Megan Moore",
+            "videos": [
+              "Testing JavaScript Applications",
+              "Introduction to TypeScript",
+              "Deploying Applications"
+            ]
+          }
+        ]
+      },
+      {
+        "level": "Advanced",
+        "instructors": [
+          {
+            "name": "William Scott",
+            "videos": [
+              "Advanced React Patterns",
+              "State Management with Redux",
+              "Server-Side Rendering with Next.js"
+            ]
+          },
+          {
+            "name": "Isabella Green",
+            "videos": [
+              "Performance Optimization in Web Apps",
+              "Web Security Best Practices",
+              "Using WebSockets in Real-Time Applications"
+            ]
+          },
+          {
+            "name": "Ethan Harris",
+            "videos": [
+              "GraphQL Basics",
+              "Advanced Database Design",
+              "Microservices Architecture"
+            ]
+          },
+          {
+            "name": "Grace Thompson",
+            "videos": [
+              "Continuous Integration and Deployment",
+              "Advanced Testing Strategies",
+              "Kubernetes for Developers"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  

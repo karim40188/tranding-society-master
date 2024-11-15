@@ -1,0 +1,472 @@
+import { Box, Button, TextField, Typography, MenuItem } from "@mui/material";
+import registerLogo from "../assets/register_img.png";
+import { useFormik } from "formik";
+// import axios from "axios";
+import * as Yup from "yup";
+import { useContext, useState } from "react";
+// import { DarkModeContext } from "./context/Context";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+function Register() {
+  // let { token, setToken, baseUrl } = useContext(DarkModeContext);
+  // let navigate = useNavigate();
+  let [err, setErr] = useState(false);
+
+  async function getValues(values) {
+    let res = await axios.post(
+      `https://tradingsociety.net/api/v1/register`,
+      values
+    );
+    console.log(res);
+    // // navigate('/');
+    console.log(values)
+  }
+
+  let validationSchema = Yup.object({
+    first_name: Yup.string()
+      .required("First name is required")
+      .min(2, "Minimum length is 2 characters"),
+    last_name: Yup.string()
+      .required("Last name is required")
+      .min(2, "Minimum length is 2 characters"),
+    phone_number: Yup.string()
+      .required("Phone number is required")
+      .matches(/^[0-9]+$/, "Phone number must be numeric")
+      .min(10, "Phone number must be at least 10 digits"),
+    email: Yup.string()
+      .required("Email is required")
+      .matches(
+        /^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+        "Email is not valid"
+      ),
+    password: Yup.string()
+      .required("password is required")
+      .min(8, "min length is 8 chars"),
+    broker: Yup.string().required("Please select your broker"),
+    broker_registration_email: Yup.string()
+      .required("Broker registration email is required")
+      .email("Invalid email format"),
+    country: Yup.string().required("Country is required"),
+    id_number: Yup.string().required("ID number is required"),
+    id_photo_front: Yup.mixed().required("ID photo (front) is required"),
+    id_photo_back: Yup.mixed().required("ID photo (back) is required"),
+    selfie_with_id: Yup.mixed().required("Selfie with ID is required"),
+    sponsor_id: Yup.string().required("Sponsor ID is required"),
+    is_subscribed: Yup.string().required("Sponsor ID is required"),
+  });
+
+  let formik = useFormik({
+    initialValues: {
+      first_name: "",
+      last_name: "",
+      email: "",
+      password: "",
+      phone_number: "",
+      broker: "",
+      broker_registration_email: "",
+      country: "",
+      id_number: "",
+      id_photo_front: null,
+      id_photo_back: null,
+      selfie_with_id: null,
+      sponsor_id: "",
+      is_subscribed: false,
+    },
+    validationSchema,
+    onSubmit: getValues,
+  });
+
+  return (
+    <Box
+      sx={{
+        minHeight: "100vh",
+        width: "100%",
+        backgroundColor: "#191919",
+        display: "flex",
+        gap: "10px",
+      }}
+    >
+      <Box
+        sx={{
+          width: "50%",
+          textAlign: "center",
+          display: { xs: "none", lg: "flex" },
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          backgroundColor: "#000",
+        }}
+      >
+        <Box sx={{ width: { md: "80%", xl: "100%" } }}>
+          <Box
+            sx={{ width: "100%", backgroundSize: "cover" }}
+            component="img"
+            src={registerLogo}
+          />
+        </Box>
+        <Typography
+          sx={{ fontSize: "32px", lineHeight: "22.21px", color: "#fff" }}
+        >
+          IT&apos;S NOT ABOUT STRATEGIES IT&apos;S ABOUT SOCIETY
+        </Typography>
+      </Box>
+      <Box sx={{ mt: "30px", ml: { lg: "100px" }, width: "90%", mx: "auto" }}>
+        <Typography
+          sx={{ color: "#fff", fontSize: { xs: "30px", xl: "45px" } }}
+        >
+          Create an account
+        </Typography>
+
+        {err ? (
+          <Typography sx={{ color: "red", fontSize: "30px" }}>{err}</Typography>
+        ) : (
+          ""
+        )}
+        <Box
+          component="form"
+          sx={{
+            width: "90%",
+            p: "10px",
+            mx: "auto",
+            mt: { lg: "30px", xl: "90px" },
+            display: "flex",
+            flexDirection: "column",
+            gap: { xs: "10px", xl: "30px" },
+            color: "#fff",
+          }}
+          onSubmit={formik.handleSubmit}
+        >
+          <TextField
+            fullWidth
+            variant="outlined"
+            sx={{
+              backgroundColor: "#2B2B2B",
+              borderRadius: "10px",
+              border: formik.errors.first_name ? "1px solid #dc3545" : "",
+            }}
+            placeholder="First Name"
+            value={formik.values.first_name}
+            name="first_name"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.errors.first_name && formik.touched.first_name && (
+            <Box sx={{ fontSize: "22px", color: "#dc3545", padding: "10px" }}>
+              {formik.errors.first_name}
+            </Box>
+          )}
+
+          <TextField
+            fullWidth
+            variant="outlined"
+            sx={{
+              backgroundColor: "#2B2B2B",
+              borderRadius: "10px",
+              border: formik.errors.last_name ? "1px solid #dc3545" : "",
+            }}
+            placeholder="Last Name"
+            value={formik.values.last_name}
+            name="last_name"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.errors.last_name && formik.touched.last_name && (
+            <Box sx={{ fontSize: "22px", color: "#dc3545", padding: "10px" }}>
+              {formik.errors.last_name}
+            </Box>
+          )}
+
+          <TextField
+            fullWidth
+            variant="outlined"
+            sx={{
+              backgroundColor: "#2B2B2B",
+              borderRadius: "10px",
+              border: formik.errors.phone_number ? "1px solid #dc3545" : "",
+            }}
+            placeholder="Phone Number"
+            value={formik.values.phone_number}
+            name="phone_number"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.errors.phone_number && formik.touched.phone_number && (
+            <Box sx={{ fontSize: "22px", color: "#dc3545", padding: "10px" }}>
+              {formik.errors.phone_number}
+            </Box>
+          )}
+
+          <TextField
+            fullWidth
+            variant="outlined"
+            sx={{
+              backgroundColor: "#2B2B2B",
+              borderRadius: "10px",
+              border: formik.errors.email ? "1px solid #dc3545" : "",
+            }}
+            placeholder="E-mail"
+            value={formik.values.email}
+            name="email"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.errors.email && formik.touched.email && (
+            <Box sx={{ fontSize: "22px", color: "#dc3545", padding: "10px" }}>
+              {formik.errors.email}
+            </Box>
+          )}
+          <TextField
+            fullWidth
+            variant="outlined"
+            sx={{
+              backgroundColor: "#2B2B2B",
+              borderRadius: "10px",
+              border: formik.errors.password ? "1px solid #dc3545" : "",
+            }}
+            placeholder="Password"
+            value={formik.values.password}
+            name="password"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.errors.password && formik.touched.password && (
+            <Box sx={{ fontSize: "22px", color: "#dc3545", padding: "10px" }}>
+              {formik.errors.password}
+            </Box>
+          )}
+
+          <TextField
+            fullWidth
+            variant="outlined"
+            sx={{
+              backgroundColor: "#2B2B2B",
+              borderRadius: "10px",
+              border: formik.errors.broker ? "1px solid #dc3545" : "",
+            }}
+            select
+            placeholder="Select Your Broker"
+            value={formik.values.broker}
+            name="broker"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem sx={{ color: "#000" }} value="Broker1">
+              Broker 1
+            </MenuItem>
+            <MenuItem sx={{ color: "#000" }} value="Broker2">
+              Broker 2
+            </MenuItem>
+            <MenuItem sx={{ color: "#000" }} value="Broker3">
+              Broker 3
+            </MenuItem>
+          </TextField>
+          {formik.errors.broker && formik.touched.broker && (
+            <Box sx={{ fontSize: "22px", color: "#dc3545", padding: "10px" }}>
+              {formik.errors.broker}
+            </Box>
+          )}
+
+          <TextField
+            fullWidth
+            variant="outlined"
+            sx={{
+              backgroundColor: "#2B2B2B",
+              borderRadius: "10px",
+              border: formik.errors.broker_registration_email
+                ? "1px solid #dc3545"
+                : "",
+            }}
+            placeholder="Broker Registration Email"
+            value={formik.values.broker_registration_email}
+            name="broker_registration_email"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.errors.broker_registration_email &&
+            formik.touched.broker_registration_email && (
+              <Box sx={{ fontSize: "22px", color: "#dc3545", padding: "10px" }}>
+                {formik.errors.broker_registration_email}
+              </Box>
+            )}
+
+          <TextField
+            fullWidth
+            variant="outlined"
+            sx={{
+              backgroundColor: "#2B2B2B",
+              borderRadius: "10px",
+              border: formik.errors.country ? "1px solid #dc3545" : "",
+            }}
+            placeholder="Country"
+            value={formik.values.country}
+            name="country"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.errors.country && formik.touched.country && (
+            <Box sx={{ fontSize: "22px", color: "#dc3545", padding: "10px" }}>
+              {formik.errors.country}
+            </Box>
+          )}
+
+          <TextField
+            fullWidth
+            variant="outlined"
+            sx={{
+              backgroundColor: "#2B2B2B",
+              borderRadius: "10px",
+              border: formik.errors.id_number ? "1px solid #dc3545" : "",
+            }}
+            placeholder="ID Number"
+            value={formik.values.id_number}
+            name="id_number"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.errors.id_number && formik.touched.id_number && (
+            <Box sx={{ fontSize: "22px", color: "#dc3545", padding: "10px" }}>
+              {formik.errors.id_number}
+            </Box>
+          )}
+
+          <TextField
+            fullWidth
+            variant="outlined"
+            sx={{
+              backgroundColor: "#2B2B2B",
+              borderRadius: "10px",
+              border: formik.errors.id_photo_front ? "1px solid #dc3545" : "",
+            }}
+            type="file"
+            inputProps={{ accept: "image/*" }}
+            name="id_photo_front"
+            onChange={(event) => {
+              formik.setFieldValue(
+                "id_photo_front",
+                event.currentTarget.files[0]
+              );
+            }}
+          />
+          {formik.errors.id_photo_front && formik.touched.id_photo_front && (
+            <Box sx={{ fontSize: "22px", color: "#dc3545", padding: "10px" }}>
+              {formik.errors.id_photo_front}
+            </Box>
+          )}
+
+          <TextField
+            fullWidth
+            variant="outlined"
+            sx={{
+              backgroundColor: "#2B2B2B",
+              borderRadius: "10px",
+              border: formik.errors.id_photo_back ? "1px solid #dc3545" : "",
+            }}
+            type="file"
+            inputProps={{ accept: "image/*" }}
+            name="id_photo_back"
+            onChange={(event) => {
+              formik.setFieldValue(
+                "id_photo_back",
+                event.currentTarget.files[0]
+              );
+            }}
+          />
+          {formik.errors.id_photo_back && formik.touched.id_photo_back && (
+            <Box sx={{ fontSize: "22px", color: "#dc3545", padding: "10px" }}>
+              {formik.errors.id_photo_back}
+            </Box>
+          )}
+
+          <TextField
+            fullWidth
+            variant="outlined"
+            sx={{
+              backgroundColor: "#2B2B2B",
+              borderRadius: "10px",
+              border: formik.errors.selfie_with_id ? "1px solid #dc3545" : "",
+            }}
+            type="file"
+            inputProps={{ accept: "image/*" }}
+            name="selfie_with_id"
+            onChange={(event) => {
+              formik.setFieldValue(
+                "selfie_with_id",
+                event.currentTarget.files[0]
+              );
+            }}
+          />
+          {formik.errors.selfie_with_id && formik.touched.selfie_with_id && (
+            <Box sx={{ fontSize: "22px", color: "#dc3545", padding: "10px" }}>
+              {formik.errors.selfie_with_id}
+            </Box>
+          )}
+
+          <TextField
+            fullWidth
+            variant="outlined"
+            sx={{
+              backgroundColor: "#2B2B2B",
+              borderRadius: "10px",
+              border: formik.errors.sponsor_id ? "1px solid #dc3545" : "",
+            }}
+            placeholder="Sponsor ID"
+            value={formik.values.sponsor_id}
+            name="sponsor_id"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.errors.sponsor_id && formik.touched.sponsor_id && (
+            <Box sx={{ fontSize: "22px", color: "#dc3545", padding: "10px" }}>
+              {formik.errors.sponsor_id}
+            </Box>
+          )}
+      <TextField
+  fullWidth
+  variant="outlined"
+  select
+  sx={{
+    backgroundColor: "#2B2B2B",
+    borderRadius: "10px",
+    border: formik.errors.is_subscribed ? "1px solid #dc3545" : "",
+  }}
+  value={formik.values.is_subscribed}
+  name="is_subscribed"
+  onChange={formik.handleChange}
+  onBlur={formik.handleBlur}
+>
+  <MenuItem value={true}>True</MenuItem>
+  <MenuItem value={false}>False</MenuItem>
+</TextField>
+{formik.errors.is_subscribed && formik.touched.is_subscribed && (
+  <Box sx={{ fontSize: "22px", color: "#dc3545", padding: "10px" }}>
+    {formik.errors.is_subscribed}
+  </Box>
+)}
+
+
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{
+              borderRadius: "5px",
+              backgroundColor: "#007bff",
+              "&:hover": {
+                backgroundColor: "#0056b3",
+              },
+              fontSize: "16px",
+              mt: "20px",
+            }}
+          >
+            Submit
+          </Button>
+        </Box>
+      </Box>
+    </Box>
+  );
+}
+
+export default Register;

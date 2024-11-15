@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "b0444bb2-ad08-4237-bdbb-1c63f0a05e26",
+		"name": "API Collection Version One",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30436383"
+	},
+	"item": [
+		{
+			"name": "User Auth folder",
+			"item": [
+				{
+					"name": "user register request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "ammar",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ammar@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{APP_URL}}/register"
+					},
+					"response": []
+				},
+				{
+					"name": "user login requet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "ammar@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{APP_URL}}/login"
+					},
+					"response": []
+				},
+				{
+					"name": "user logout request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "1|8HVZcdObB6L49k0O1NOaushaDLLn7g14sT2hZearbafb27f9"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"url": "{{APP_URL}}/logout"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "online sessions folder",
+			"item": [
+				{
+					"name": "create meeting request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "5|qwmNifWfX0lSaSwiMPspk8LKwikLAOlSV2yETuEY06200041"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"topic\": \"Your meeting topic\",\r\n    \"start_time\": \"2024-09-20T10:00:00Z\",\r\n    \"duration\": 60\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{APP_URL}}/zoom/meetings"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "instructor folder",
+			"item": [
+				{
+					"name": "show all instructors request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "2|CsXUlswiAO2FQhLkJWf5D4IlgeVYaTPhMcWwixI1aa1562a4"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{APP_URL}}/instructor"
+					},
+					"response": []
+				},
+				{
+					"name": "get instructor by id request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "2|j0PM9H8syF2m7eQIdjdsNT1H4fF3QrHFKNd8OL2403561e28"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{APP_URL}}/instructor/7"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "courses folder",
+			"item": [
+				{
+					"name": "get all courses request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "2|j0PM9H8syF2m7eQIdjdsNT1H4fF3QrHFKNd8OL2403561e28"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{APP_URL}}/courses"
+					},
+					"response": []
+				},
+				{
+					"name": "show course by id request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "39|k078dYI34QYWr1rNnAK8GEg9CN37nI0sLl9zNV6r70403364"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{APP_URL}}/courses/3"
+					},
+					"response": []
+				},
+				{
+					"name": "mark course as completed  request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "2|CsXUlswiAO2FQhLkJWf5D4IlgeVYaTPhMcWwixI1aa1562a4"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"url": "{{APP_URL}}/complete_course/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "offers folder",
+			"item": [
+				{
+					"name": "get all of offers request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "2|CsXUlswiAO2FQhLkJWf5D4IlgeVYaTPhMcWwixI1aa1562a4"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{APP_URL}}/offers"
+					},
+					"response": []
+				},
+				{
+					"name": "get offer by id request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "2|CsXUlswiAO2FQhLkJWf5D4IlgeVYaTPhMcWwixI1aa1562a4"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{APP_URL}}/offers/2"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "category folder",
+			"item": [
+				{
+					"name": "get all categories request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "39|k078dYI34QYWr1rNnAK8GEg9CN37nI0sLl9zNV6r70403364"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{APP_URL}}/category"
+					},
+					"response": []
+				},
+				{
+					"name": "get category by id request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "39|k078dYI34QYWr1rNnAK8GEg9CN37nI0sLl9zNV6r70403364"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{APP_URL}}/category/1"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "APP_URL",
+			"value": "http://127.0.0.1:8000/api/v1",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "APP_URL",
+			"value": "https://tradingsociety.net/api/v1",
+			"type": "string"
+		}
+	]
+}

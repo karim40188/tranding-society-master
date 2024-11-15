@@ -1,0 +1,3 @@
+navbar remove margin 
+be a partner
+put a line under link

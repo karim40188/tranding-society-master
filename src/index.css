@@ -1,0 +1,136 @@
+::selection {
+  background-color: hsl(36, 60%, 60%);
+}
+
+body {
+  background-color: #191919 !important;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+.loader {
+  font-size: 48px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  display: inline-block;
+  color: #ecbc56;
+  letter-spacing: 2px;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  letter-spacing: 5px;
+}
+.loader::after {
+  content: "Trading Society";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  animation: animloader 3.5s linear infinite;
+}
+
+@keyframes animloader {
+  0% {
+    height: 100%;
+  }
+  100% {
+    height: 0%;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px; /* العرض */
+  height: 10px; /* الارتفاع */
+}
+::-webkit-scrollbar-track {
+  background-color: #0000; /* لون الخلفية */
+}
+::-webkit-scrollbar-thumb {
+  background-color: #666666;
+  border-radius: 4px;
+}
+@font-face {
+  font-family: "TanseekModernProArabic-ExBold"; /* اسم الخط الذي ستستخدمه */
+  src: url("./fonts/TanseekModernProArabic-Light.ttf") format("truetype"); /* مسار ملف الخط */
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Clarendon";
+  src: url("./fonts/ClarendonRegular.otf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("./fonts/SFPRODISPLAYREGULAR.OTF") format("opentype");
+  font-weight: normal; /* يمكنك ضبط الوزن حسب الحاجة */
+  font-style: normal; /* يمكنك ضبط الأسلوب حسب الحاجة */
+}
+@font-face {
+  font-family: "Motken noqta ii";
+  src: url("./fonts/Motken_noqta_i_Regular.ttf") format("opentype");
+  font-weight: normal; /* يمكنك ضبط الوزن حسب الحاجة */
+  font-style: normal; /* يمكنك ضبط الأسلوب حسب الحاجة */
+}
+
+a {
+  text-decoration: none;
+}
+
+.trade_alert {
+  filter: drop-shadow(0px 1px 16.6px #ecbc56);
+}
+
+.active_category {
+  background-color: #ecbc56 !important;
+}
+
+.active_instructor {
+  background-color: #ecbc56 !important;
+}
+.filter {
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.calenderDate {
+  width: 250.01px;
+  height: 10px;
+  background: linear-gradient(90deg, #191919 57.89%, #856a30 100%);
+  margin: 0 auto;
+  transform: translateX(-55px);
+}
+.active {
+  background-color: #ecbc56;
+  /* color: #ecbc56 !important; */
+  border-radius: 30px 0 0 30px;
+}
+.rotateImg {
+  animation: spin 3s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.sub-link:hover{
+ color:#ecbc56 !important;
+ 
+}
