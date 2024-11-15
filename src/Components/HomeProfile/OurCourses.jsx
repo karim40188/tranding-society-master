@@ -21,7 +21,7 @@ function OurCourses() {
   let navigate = useNavigate();
 
   async function getCourses() {
-    let res = await axios.get(`https://tradingsociety.net/api/v1/courses`, {
+    let res = await axios.get(`https://tradingsociety.net/api/api/v1/courses`, {
       headers: {
         Authorization: `Bearer 29|Ty80fgEhfB5ll2b5og6dTY5WJWqIxwPCZRD2jVNOa50891a8`,
       },

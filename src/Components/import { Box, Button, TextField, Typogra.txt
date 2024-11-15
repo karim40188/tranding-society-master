@@ -15,7 +15,7 @@ function Register() {
 
   async function getValues(values) {
     let res = await axios.post(
-      `https://tradingsociety.net/api/v1/register`,
+      `https://tradingsociety.net/api/api/v1/register`,
       values
     );
     console.log(res);

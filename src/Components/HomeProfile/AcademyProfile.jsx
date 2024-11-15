@@ -19,7 +19,7 @@ function AcademyProfile() {
   let [instructorWithId, setInstructorWithId] = useState({});
 
   async function getAllInstructors() {
-    let res = await axios.get(`https://tradingsociety.net/api/v1/instructor`, {
+    let res = await axios.get(`https://tradingsociety.net/api/api/v1/instructor`, {
       headers: {
         Authorization: `Bearer 29|Ty80fgEhfB5ll2b5og6dTY5WJWqIxwPCZRD2jVNOa50891a8`,
       },
@@ -29,7 +29,7 @@ function AcademyProfile() {
 
   async function getInstructorCourses(id) {
     let res = await axios.get(
-      `https://tradingsociety.net/api/v1/instructor_courses/${id}`,
+      `https://tradingsociety.net/api/api/v1/instructor_courses/${id}`,
       {
         headers: {
           Authorization: `Bearer 29|Ty80fgEhfB5ll2b5og6dTY5WJWqIxwPCZRD2jVNOa50891a8`,
@@ -37,6 +37,7 @@ function AcademyProfile() {
       }
     );
     setInstructorWithId(res?.data?.instructor_with_courses);
+    console.log(res)
   }
 
   useEffect(() => {

@@ -12,7 +12,7 @@ function Categories() {
   const fetchCategories = async () => {
     try {
       const response = await axios.get(
-        "https://tradingsociety.net/api/v1/category",
+        "https://tradingsociety.net/api/api/v1/category",
         {
           headers: {
             Authorization: `Bearer 29|Ty80fgEhfB5ll2b5og6dTY5WJWqIxwPCZRD2jVNOa50891a8`,

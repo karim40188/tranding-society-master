@@ -10,7 +10,7 @@ function Login() {
   let [err, setErr] = useState(false);
   let navigate = useNavigate();
   async function signIn(values) {
-    let res = await axios.post(`https://tradingsociety.net/api/v1/login`, values).catch((err) => {
+    let res = await axios.post(`https://tradingsociety.net/api/api/v1/login`, values).catch((err) => {
       console.log(err?.response?.data?.message?.email[0]);
       setErr(err?.response?.data?.message?.email[0]);
     });
