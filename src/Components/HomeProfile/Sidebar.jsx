@@ -26,6 +26,8 @@ function Sidebar() {
     setUserFirstName,
     lastName,
     setLastName,
+    setUserEmail,
+    setPhone
   } = useContext(TokenContext);
   let [activeLink, setActiveLink] = useState(false);
   let navigate = useNavigate();
@@ -44,6 +46,9 @@ function Sidebar() {
     setUserFirstName(res?.data?.user?.user_first_name);
     setUserId(res?.data?.user?.user_id);
     setLastName(res?.data?.user?.user_last_name);
+    setUserEmail(res?.data?.user?.user_email)
+    setPhone(res?.data?.user?.phone)
+
   }
 
   useEffect(() => {
@@ -114,8 +119,8 @@ function Sidebar() {
       sx={{
         position: { xs: "fixed", md: "sticky" },
         backgroundColor: "black",
-        width: sidebarOpen ? "250px" : "0",
-        transform: sidebarOpen ? "translateX(0)" : "translateX(-250px)",
+        width: sidebarOpen ? "280px" : "0",
+        transform: sidebarOpen ? "translateX(0)" : "translateX(-280px)",
         zIndex: "99999",
         minHeight: "100vh",
         overflow: "hidden",
@@ -366,10 +371,8 @@ function Sidebar() {
             Logout
           </Typography>
         </Button>
-        {/* 
-          <Box sx={{ mt: "40px", textAlign: "center" }}>
-            <Box component="img" src={sideBar_img} />
-          </Box> */}
+       
+         
       </Box>
     </Box>
   );

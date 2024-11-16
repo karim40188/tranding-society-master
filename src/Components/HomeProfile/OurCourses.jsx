@@ -57,7 +57,6 @@ function OurCourses() {
             fontSize: { xs: "24px", sm: "33px" },
             my: "3px",
             color: "#fff",
-            transform: "translateX(-40px)",
             position: "relative",
             zIndex: "99",
             "&::after": {

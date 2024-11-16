@@ -20,8 +20,7 @@ import { IoCall } from "react-icons/io5";
 import { FaMap, FaEnvelope } from "react-icons/fa";
 import emailjs from "emailjs-com";
 import { initializeApp } from "firebase/app";
-import {addDoc, collection, getFirestore} from "@firebase/firestore"
-
+import { addDoc, collection, getFirestore } from "@firebase/firestore";
 
 function Footer() {
   const [open, setOpen] = useState(false);
@@ -31,11 +30,6 @@ function Footer() {
   const [phone, setPhone] = useState("");
   const [comment, setComment] = useState("");
 
-
-
-
-  
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -44,54 +38,53 @@ function Footer() {
     setOpen(false);
   };
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBaPeUGhkENHVruQFcK2n7o0MIfYa0zWkE",
-  authDomain: "suggestion-form-520a9.firebaseapp.com",
-  projectId: "suggestion-form-520a9",
-  storageBucket: "suggestion-form-520a9.appspot.com",
-  messagingSenderId: "523137805109",
-  appId: "1:523137805109:web:70e608ce0624f366953a7c"
-};
+  const firebaseConfig = {
+    apiKey: "AIzaSyBaPeUGhkENHVruQFcK2n7o0MIfYa0zWkE",
+    authDomain: "suggestion-form-520a9.firebaseapp.com",
+    projectId: "suggestion-form-520a9",
+    storageBucket: "suggestion-form-520a9.appspot.com",
+    messagingSenderId: "523137805109",
+    appId: "1:523137805109:web:70e608ce0624f366953a7c",
+  };
 
-const app = initializeApp(firebaseConfig);
-const db= getFirestore(app)
-const handleSubmit = async () => {
-  if (!name || !age || !email) {
-    alert("Please fill in all fields.");
-    return;
-  }
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const handleSubmit = async () => {
+    if (!name || !age || !email) {
+      alert("Please fill in all fields.");
+      return;
+    }
 
-  try {
-    // إرسال البريد الإلكتروني عبر EmailJS
-    await emailjs.send(
-      "service_1k9zj0q",
-      "template_on70taw",
-      {
-        from_name: name,
-        from_email: email,
-        message: comment,
-        to_email: "abdelrahemanhamed@gmail.com", // حقل البريد الإلكتروني المستهدف
-      },
-      "kEnx-izGC3-miUZRo"
-    );
+    try {
+      // إرسال البريد الإلكتروني عبر EmailJS
+      await emailjs.send(
+        "service_1k9zj0q",
+        "template_on70taw",
+        {
+          from_name: name,
+          from_email: email,
+          message: comment,
+          to_email: "abdelrahemanhamed@gmail.com", // حقل البريد الإلكتروني المستهدف
+        },
+        "kEnx-izGC3-miUZRo"
+      );
 
-    // حفظ البيانات في Firestore
-    await addDoc(collection(db, "contacts"), {
-      name: name,
-      age: age,
-      email: email,
-      phone: phone,
-      comment: comment,
-    });
+      // حفظ البيانات في Firestore
+      await addDoc(collection(db, "contacts"), {
+        name: name,
+        age: age,
+        email: email,
+        phone: phone,
+        comment: comment,
+      });
 
-    alert("Email sent and data stored successfully!");
-    handleClose();
-  } catch (error) {
-    console.log("Error:", error);
-    alert("Failed to send email or store data.");
-  }
-};
-
+      alert("Email sent and data stored successfully!");
+      handleClose();
+    } catch (error) {
+      console.log("Error:", error);
+      alert("Failed to send email or store data.");
+    }
+  };
 
   return (
     <Box
@@ -111,10 +104,14 @@ const handleSubmit = async () => {
             justifyContent: { xs: "center", md: "flex-start" },
             mb: { xs: 4, md: 0 },
             textAlign: { xs: "center", md: "left" },
-            transform:{lg:"translate(-60px,-30px)"}
+            transform: { lg: "translate(-60px,-30px)" },
           }}
         >
-          <Box component="img" src={logo} sx={{ mb: { xs: 2, md: 0 } , width:'69px', height:'69px'}} />
+          <Box
+            component="img"
+            src={logo}
+            sx={{ mb: { xs: 2, md: 0 }, width: "69px", height: "69px" }}
+          />
           <Box
             component="img"
             src={brand}
@@ -126,7 +123,7 @@ const handleSubmit = async () => {
         </Box>
 
         <Grid2 container spacing={2} sx={{ mt: "10px" }}>
-          <Grid2 size={{ xs: 12, md: 4, lg: 4}}>
+          <Grid2 size={{ xs: 12, md: 4, lg: 3.3 }}>
             <Box
               sx={{
                 color: "gray",
@@ -260,48 +257,54 @@ const handleSubmit = async () => {
             </Box>
           </Grid2>
 
-          <Grid2 size={{ xs: 12, md: 4, lg: 3 }}>
-            <Box sx={{ position: "relative" }}>
-              <TextField
-                margin="dense"
-                placeholder="Your suggestion"
-                fullWidth
-                variant="outlined"
-                slotProps={{
-                  input: {
-                    style: {
-                      borderRadius: "30px",
-                      width: "334px",
-                      height: "44px",
-                      color: "#000",
-                      backgroundColor: "#fff",
-                      border: "none",
-                    },
+          <Grid2
+            sx={{
+              position: "relative",
+              height: "100%",
+              mx: "auto",
+            }}
+            size={{ xs: 12, md: 4, lg: 3.6 }}
+          >
+            <TextField
+              margin="dense"
+              placeholder="Your suggestion"
+              variant="outlined"
+              slotProps={{
+                input: {
+                  style: {
+                    borderRadius: "30px",
+                    width: "334px",
+                    height: "44px",
+                    color: "#000",
+                    backgroundColor: "#fff",
+                    border: "none",
                   },
-                }}
-                onClick={handleClickOpen}
-              />
-              <Button
-                sx={{
-                  width: "103px",
-                  height: "32px",
-                  borderRadius: "50px",
-                  backgroundColor: "#ECBC56",
-                  color: "#000",
-                  position: "absolute",
-                  top: "25%",
-                  right: { xs: "18%", lg: "-18%" },
-                  fontSize: "15px",
-                  letterSpacing: "-0.17px",
-                  lineHeight: "18px",
-                  textTransform: "capitalize",
+                },
+              }}
+              onClick={handleClickOpen}
+            />
+            <Button
+              sx={{
+                position: "absolute",
+                width: "103px",
+                height: "32px",
+                borderRadius: "50px",
+                backgroundColor: "#ECBC56",
+                color: "#000",
+                top: "52%",
+                transform: "translateY(-50%)",
 
-                  // trnasform:'translate(-50%, -50%)'
-                }}
-              >
-                Click Here
-              </Button>
-            </Box>
+                right: "10px",
+                fontSize: "15px",
+                letterSpacing: "-0.17px",
+                lineHeight: "18px",
+                textTransform: "capitalize",
+
+                // trnasform:'translate(-50%, -50%)'
+              }}
+            >
+              Click Here
+            </Button>
           </Grid2>
         </Grid2>
 

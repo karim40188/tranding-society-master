@@ -168,7 +168,7 @@ function Academy() {
                 src={logo}
                 sx={{
                   position: "absolute",
-                  top: "5%",
+                  top: "10%",
                   left: "50%",
                   transform: "translateX(-50%)",
                   width: "80px",

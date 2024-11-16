@@ -9,8 +9,6 @@ import { TokenContext } from "../context/Context";
 function Cards() {
 
 
-
-
   let {
     userEmail,
     // userId,
@@ -19,11 +17,13 @@ function Cards() {
     // lastName,
     phone,
   } = useContext(TokenContext);
+  console.log(userEmail)
+
   const [userInfo] = useState([
     { label: "Name", value: userFirstName },
     { label: "E-mail", value: userEmail },
     { label: "Subscription", value: "Elite" },
-    { label: "Phone Number", value:phone },
+    { label: "Phone Number", value: phone },
     { label: "start Date", value: "25/10/2024" },
     { label: "Expiratiion Date", value: "25/10/2024" },
   ]);

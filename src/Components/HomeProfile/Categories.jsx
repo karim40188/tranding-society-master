@@ -15,7 +15,7 @@ function Categories() {
         "https://tradingsociety.net/api/api/v1/category",
         {
           headers: {
-            Authorization: `Bearer 29|Ty80fgEhfB5ll2b5og6dTY5WJWqIxwPCZRD2jVNOa50891a8`,
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         }
       );

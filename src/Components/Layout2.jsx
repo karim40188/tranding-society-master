@@ -39,7 +39,7 @@ function Layout2() {
           <Box sx={{ width: "100%" }}>
             <Navbar />
 
-            <Box sx={{ p: "20px", minHeight: "100vh" }}>
+            <Box sx={{ p: "30px", minHeight: "100vh" }}>
               <Outlet />
             </Box>
             <FooterProfile />

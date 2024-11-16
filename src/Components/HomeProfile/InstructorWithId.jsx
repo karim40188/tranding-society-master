@@ -12,7 +12,7 @@ function InstructorWithId() {
   async function getInstructor(id) {
     let res = await axios.get(`${baseUrl}/instructor/${id}`, {
       headers: {
-        Authorization: `Bearer 13|svJN9H6CUZJQHA2ZTAVas7VpkR1f480JU8dSDSBva4d78643`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     });
     setInstructor(res?.data?.Instructor);

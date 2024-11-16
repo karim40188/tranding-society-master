@@ -21,7 +21,7 @@ function AcademyProfile() {
       `https://tradingsociety.net/api/api/v1/instructor`,
       {
         headers: {
-          Authorization: `Bearer 29|Ty80fgEhfB5ll2b5og6dTY5WJWqIxwPCZRD2jVNOa50891a8`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
     );
@@ -33,7 +33,7 @@ function AcademyProfile() {
       `https://tradingsociety.net/api/api/v1/instructor_courses/${id}`,
       {
         headers: {
-          Authorization: `Bearer 29|Ty80fgEhfB5ll2b5og6dTY5WJWqIxwPCZRD2jVNOa50891a8`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
     );
@@ -68,7 +68,7 @@ function AcademyProfile() {
           justifyContent: "start",
           alignItems: "start",
           flexDirection: "column",
-          px: { xs: 2, md: 4 },
+          // px: { xs: 2, md: 4 },
         }}
       >
         <Box>
@@ -77,7 +77,7 @@ function AcademyProfile() {
               fontSize: { xs: "24px", md: "33px" },
               my: "30px",
               color: "#fff",
-              transform: "translateX(15px)",
+              // transform: "translateX(15px)",
               position: "relative",
               "&::after": {
                 content: "''",
@@ -102,7 +102,7 @@ function AcademyProfile() {
             display: "flex",
             gap: "20px",
             flexWrap: "wrap",
-            justifyContent:'center'
+            justifyContent: "center",
           }}
         >
           {instructors.map((educator, index) => (
