@@ -5,16 +5,28 @@
 body {
   background-color: #191919 !important;
   color: #ffffff;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow-x: hidden;
+  overflow-x:hidden;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+.flex-col {
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
 }
 
 
 
-.text-field{
-  color:#fff !important;
+.text-field {
+  color: #fff !important;
 }
 .loader {
   font-size: 48px;
@@ -135,8 +147,6 @@ html {
   }
 }
 
-
-.sub-link:hover{
- color:#ecbc56 !important;
- 
+.sub-link:hover {
+  color: #ecbc56 !important;
 }

@@ -56,13 +56,14 @@ function Cards() {
       sx={{
         position: "relative",
         display: "hidden",
-        width: { xs: "100%", md: "99%" },
+        width: { xs: "100%" },
+        gap:'20px',
         justifyContent: {
           xs: "center",
           md: "space-between",
-          gap: "0px",
+        
         },
-        alignItems: "flex-start", // Change to flex-start
+        // alignItems: "flex-start", // Change to flex-start
       }}
     >
       {/* الكارت الأول */}

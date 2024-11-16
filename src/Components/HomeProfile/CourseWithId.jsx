@@ -49,7 +49,7 @@ function CourseWithId() {
       <Card sx={{ display: "flex", marginBottom: 4, backgroundColor: "transparent" }}>
         <CardMedia
           component="img"
-          sx={{ width: 650,borderRadius: '10px' }}
+          sx={{ width:"auto",borderRadius: '10px' }}
           image={course?.course_photo}
           alt={course?.course_title}
         />

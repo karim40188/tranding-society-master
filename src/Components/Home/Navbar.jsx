@@ -12,7 +12,7 @@ import {
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion"; // استيراد Framer Motion
+import { motion } from "framer-motion"; 
 import logo from "../../assets/logo.png";
 
 function Navbar() {
@@ -20,7 +20,7 @@ function Navbar() {
   const [scrolling, setScrolling] = useState(false);
   const [hoveredLink, setHoveredLink] = useState(null);
   const [overlayVisible, setOverlayVisible] = useState(false);
-  const [hovered, setHovered] = useState(false);
+  const [setHovered] = useState(false);
 
 
   
@@ -70,7 +70,7 @@ function Navbar() {
     {
       name: "Login",
       path: "/login",
-      subLinks: [], // لا نريد روابط فرعية لهذا الرابط
+      subLinks: [], 
     },
     {
       name: "Join us",
@@ -85,9 +85,9 @@ function Navbar() {
     const handleScroll = () => {
       setScrolling(window.scrollY > 0);
       
-      // *** ADD SCROLL LOGIC HERE TO CLOSE OVERLAY ***
+      
       if (overlayVisible) {
-        setOverlayVisible(false);  // Close the overlay when scrolling
+        setOverlayVisible(false);  
       }
     };
 
@@ -95,7 +95,7 @@ function Navbar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [overlayVisible]); // Dependency on overlayVisible
+  }, [overlayVisible]); 
 
   const handleMouseEnter = (linkName) => {
     setHoveredLink(linkName);
@@ -125,41 +125,39 @@ function Navbar() {
           background: "#000000",
           maxWidth: "100%",
           height: "70px",
-          zIndex: "999999",
+          zIndex: "10",
           transition: "300ms all ease",
           mx: "auto",
           mb: scrolling ? "0" : "30px",
           backdropFilter: "blur(15.699999809265137px)",
           backgroundColor: scrolling ? "rgba(0, 0, 0, 0.7)" : "rgba(0, 0, 0, 1)",
-          padding: { xs: "0 20px", md: "0 350px" }, // تعديل padding للشاشات الصغيرة
+          padding: { xs: "0 20px", md: "0 350px" }, 
           top: "0",
         }}
       >
-        {/* استخدام motion.div للـ overlay مع إعدادات الحركة */}
         <motion.div
             className="overlay"
-            initial={{ opacity: 0, scaleY: -50 }} // نقطة البداية - مغلق بالكامل
+            initial={{ opacity: 0, scaleY: -50 }} 
             animate={{
               opacity: overlayVisible ? 1 : 10,
-              scaleY: overlayVisible ? 1 : 0, // النمو من الأعلى إلى الأسفل
-            }} // الحركة عند العرض والإخفاء
-            transition={{ duration: 0.4, ease: "easeInOut" }} // إعدادات الانتقال
+              scaleY: overlayVisible ? 1 : 0, 
+            }} 
+            transition={{ duration: 0.4, ease: "easeInOut" }} 
             style={{
               position: "absolute",
               backgroundColor: "black",
               width: "100%",
               left: "0",
               right: "0",
-              top: "0", // بدء من الأعلى
+              top: "0", 
               height: "auto",
               paddingTop: "80px",
               paddingBottom: "40px",
-              transformOrigin: "top", // تحديد نقطة النمو من الأعلى
+              transformOrigin: "top", 
               display: overlayVisible ? "block" : "none",
             }}
-            onMouseLeave={handleMouseLeave} // إغلاق الـ overlay عند الخروج منها
+            onMouseLeave={handleMouseLeave} 
           >
-                    {/* عرض الروابط الفرعية */}
           {hoveredLink && (
             <Box
               sx={{
@@ -176,12 +174,12 @@ function Navbar() {
                 fontFamily: "TanseekModernProArabic-ExBold",
                 letterSpacing: ".071em",
                 display: "flex",
-                flexDirection: "column", // ترتيب العناصر تحت بعضها
-                gap: "15px", // الفجوة بين النصوص
+                flexDirection: "column", 
+                gap: "15px", 
               }}
               >
                   {links
-                    .find((link) => link.name === hoveredLink) // البحث عن الرابط الرئيسي
+                    .find((link) => link.name === hoveredLink) 
                     .subLinks.map((subLink, index) => (
                       <Link
                       className="sub-link"
@@ -192,7 +190,7 @@ function Navbar() {
                           padding: "5px 0",
                           color: "#fff",
                           textDecoration: "none",
-                          transition: "color 0.3s ease", // تأثير عند التحويم
+                          transition: "color 0.3s ease", 
                         }}
                       >
                         {subLink}
@@ -231,7 +229,7 @@ function Navbar() {
               component="img"
               src={logo}
               sx={{
-                maxWidth: { xs: "50px", md: "65px" }, // تصغير الشعار للشاشات الصغيرة
+                maxWidth: { xs: "50px", md: "65px" }, 
                 maxHeight: { xs: "50px", md: "70px" },
                 animation: "fadeIn 0.5s ease",
               }}
@@ -241,7 +239,7 @@ function Navbar() {
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
-              gap: { xs: "20px", md: "20px" }, // تقليص الفجوة بين الروابط للشاشات الصغيرةو المتوسطة
+              gap: { xs: "20px", md: "20px" }, 
               alignItems: "center",
               justifyContent: "center",
             }}
@@ -252,7 +250,7 @@ function Navbar() {
                 sx={{
                   position: "relative",
                   "&:hover": {
-                    transition: "all 1s ease", // Add transition here for 1-second animation
+                    transition: "all 1s ease", 
                    
                     ...(link.name !== "Join us" && {
                       "&:after": {
@@ -271,7 +269,7 @@ function Navbar() {
                   to={link.path}
                   className="link"
                   onMouseEnter={() => {
-                    if (link.name !== "Join us" && link.name !== "Login" && link.name !== "Home"&& link.name !== "Academy"&& link.name !== "Sessions" && link.name !== "Trade Alerts"  && link.name !== "Scanners") { // عدم إظهار overlay عند LOGIN
+                    if (link.name !== "Join us" && link.name !== "Login" && link.name !== "Home"&& link.name !== "Academy"&& link.name !== "Sessions" && link.name !== "Trade Alerts"  && link.name !== "Scanners") { 
                       handleMouseEnter(link.name);
                     }
                   }}
@@ -285,7 +283,7 @@ function Navbar() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      fontSize: { xs: "16px", md: "25px" }, // تصغير حجم النص للشاشات الصغيرة
+                      fontSize: { xs: "16px", md: "25px" }, 
                       width: "150px",
                     
                       ...(link.name === "Join us" && {
@@ -332,7 +330,7 @@ function Navbar() {
           </Box>
         </Toolbar>
       </AppBar>
-      <Drawer anchor="left" open={isOpen} onClose={handleToggle}>
+      <Drawer anchor="left" open={isOpen} onClose={handleToggle} sx={{zIndex:'12'}}>
         <List>
           {links.map((link) => (
             <ListItem

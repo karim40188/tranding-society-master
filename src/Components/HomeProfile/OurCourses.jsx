@@ -83,7 +83,7 @@ function OurCourses() {
             display: "flex",
             justifyContent: "",
             alignItems: "center",
-            gap: "20px",
+            gap: "10px",
             flexWrap: "wrap",
           }}
         >
@@ -107,21 +107,21 @@ function OurCourses() {
           ))}
         </Box>
 
-        {/* عرض الكورسات بناءً على الفئة المحددة */}
         <Grid container spacing={2} sx={{ marginTop: 3 }}>
           {getCoursesData().map((course, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }} // يبدأ من الشفافية 0 ويكون أصغر
-                animate={{ opacity: 1, scale: 1 }} // يظهر بشكل كامل
-                exit={{ opacity: 0, scale: 0.9 }} // عند الاختفاء يصبح أصغر
-                transition={{ duration: 0.3 }} // مدة الحركة
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }} 
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }} 
               >
                 <Card
                   sx={{
                     height: "auto",
                     cursor: "pointer",
                     backgroundColor: "transparent",
+                    width:'300px'
                   }}
                   onClick={() => {
                     navigate(`/courses/${course.id}`);
@@ -163,36 +163,30 @@ function OurCourses() {
                     >
                       Instructor: {course.course_instructor_name}
                     </Typography>
-                    <Box sx={{display:'flex', alignItems:'center',gap:'10px'}}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                      }}
+                    >
                       <Box
                         sx={{
                           color: "#ECBC56",
                           display: "flex",
                           alignItems: "center",
-                          mt:'7px'
+                          mt: "7px",
                         }}
                       >
-                        <FaStar style={{ width: "10px", height: "10px" }} />
-                        <FaStar style={{ width: "10px", height: "10px" }} />
-                        <FaStar style={{ width: "10px", height: "10px" }} />
-                        <FaStar style={{ width: "10px", height: "10px" }} />
-                        <FaStar style={{ width: "10px", height: "10px" }} />
+                        {[1, 2, 3, 4, 5].map((_, index) => {
+                          return (
+                            <FaStar
+                              key={index}
+                              style={{ width: "10px", height: "10px" }}
+                            />
+                          );
+                        })}
                       </Box>
-{/* 
-                      <Typography
-                        sx={{
-                          color: "gray",
-                          fontSize: { xs: "10px", sm: "20px" },
-                        }}
-                      >
-                        10{" "}
-                        <Typography
-                          component="span"
-                          sx={{ ml: "1px", fontFamily:'Bayon',fontSize:' 12px'}}
-                        >
-                          k
-                        </Typography>
-                      </Typography> */}
                     </Box>
 
                     <Box sx={{ display: "flex", alignItems: "center" }}>

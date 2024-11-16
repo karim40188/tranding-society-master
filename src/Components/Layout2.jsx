@@ -4,10 +4,9 @@ import Navbar from "../Components/HomeProfile/Navbar";
 import { Outlet } from "react-router-dom";
 import FooterProfile from "./HomeProfile/FooterProfile";
 import { useContext } from "react";
-import { LoadingContext, TokenContext } from "./context/Context";
+import { LoadingContext } from "./context/Context";
 
 function Layout2() {
-  let { sidebarOpen } = useContext(TokenContext);
   let { isLoading } = useContext(LoadingContext);
 
   return (
@@ -32,50 +31,19 @@ function Layout2() {
           </span>
         </Box>
       ) : (
-        <Box sx={{ display: "flex", flexDirection: "column",  }}>
-          <Navbar />
+        <Box className="" sx={{ display: "flex", overflowX: "hidden" }}>
+          {/* Sidebar */}
 
-          <Box sx={{ display: "flex", flexGrow: 1 }}>
-            <Box sx={{ flexShrink: 0 }}>
-              <Sidebar />
-            </Box>
+          <Sidebar />
 
-            <Box
-              sx={{
-                // pt: { xs: "20px", md: "10%" },
-                width: sidebarOpen ? { xs: "100%", md: "80%" } : { xs: "100%", md: "90%" },
-                pt:{xs:'25%',md:'8%'},
-                px:'20px',
-                mx: "auto",
-                transition: "width 0.3s ease",
-                position: "relative",
-                left: sidebarOpen ? { xs: "0", md: "50%" } : {xs:'50%', md: "46%" },
-                
-                transform:sidebarOpen ? { xs: "0", md: "translateX(-50%)" } : { xs: "translateX(-50%)", md: "translateX(-50%)" },
-                // padding:'10px'
-              }}
-            >
+          <Box sx={{ width: "100%" }}>
+            <Navbar />
+
+            <Box sx={{ p: "20px", minHeight: "100vh" }}>
               <Outlet />
             </Box>
+            <FooterProfile />
           </Box>
-        <Box
-        sx={{
-          display: "flex",
-          justifyContent: "end",
-          alignItems: "end",
-          // backgroundColor: "#000
-        }}
-        >
-                <Box sx={{ 
-                  
-                  width: { xs: "0", md: sidebarOpen ? "80.5%" : "100%", xl: sidebarOpen ? "84.5%" : "100%"},
-
-                  mt: "20px", 
-        
-                  }}>
-                  <FooterProfile />
-                </Box>
-        </Box>
         </Box>
       )}
     </Box>

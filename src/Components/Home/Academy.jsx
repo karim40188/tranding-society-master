@@ -45,7 +45,7 @@ function Academy() {
         "Neque porro quisquam est qui dolorem ipsum quia.",
         "Neque porro quisquam est qui dolorem ipsum quia.",
       ],
-      image:vector2,
+      image: vector2,
     },
     {
       level: "Advanced",
@@ -61,7 +61,7 @@ function Academy() {
         "Neque porro quisquam est qui dolorem ipsum quia.",
         "Neque porro quisquam est qui dolorem ipsum quia.",
       ],
-      image:vector3,
+      image: vector3,
     },
     {
       level: "Expert",
@@ -77,7 +77,7 @@ function Academy() {
         "Neque porro quisquam est qui dolorem ipsum quia.",
         "Neque porro quisquam est qui dolorem ipsum quia.",
       ],
-      image:vector,
+      image: vector,
     },
     {
       level: "Master",
@@ -93,16 +93,17 @@ function Academy() {
         "Neque porro quisquam est qui dolorem ipsum quia.",
         "Neque porro quisquam est qui dolorem ipsum quia.",
       ],
-      image:vector,
+      image: vector,
     },
   ]);
-  
 
   return (
-    <Box sx={{ 
-      width: { xs: "100%", md: "100%" },
-       p: { xs: 0, md: 0 }
-       }}>
+    <Box
+      sx={{
+        width: { xs: "100%", md: "100%" },
+        p: { xs: 0, md: 0 },
+      }}
+    >
       <Typography
         variant="body2"
         sx={{
@@ -111,7 +112,6 @@ function Academy() {
           my: "0px",
           textAlign: "left",
           color: "text.primary",
-          
         }}
       >
         Academy
@@ -120,8 +120,6 @@ function Academy() {
       <Swiper
         spaceBetween={40}
         slidesPerView={3}
-        // onSlideChange={() => console.log("slide change")}
-        // onSwiper={(swiper) => console.log(swiper)}
         autoplay={{
           delay: 2000,
         }}
@@ -138,69 +136,54 @@ function Academy() {
         {cards.map((card, index) => (
           <SwiperSlide key={index}>
             <Box
+            className="flex flex-col justify-center"
               sx={{
-                width: { xs: "443px", xl: "450px" },
-                height: { xs: "502px", xl: "615px" },
-                padding: "20px 20px 20px 20px",
+                width: { xs: "auto", xl: "450px" },
+                height: { xs: "550px", xl: "615px" },
+               p:'20px',
                 backgroundImage: `url(${card.image})`,
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
                 backgroundSize: "contain",
-                
-                // background:
-                //   "linear-gradient(34.82deg, #000000 48.98%, #665B2E 89.31%, #C3AD57 104.99%)",
                 position: "relative",
-                // margin: "0 600px", // إضافة مسافة بين الكروت
+              
               }}
             >
-              <Box sx={{ 
-                display: "flex",
-                alignItems: "center" ,
-                        
-              }}>
-                <Typography
-                  sx={{
-                    width: "10px",
-                    mt: "30px",
-                    fontSize: {
-                      xs: "20px",
-                      sm: "22px",
-                      md: "24px",
-                      xl: "30px",
-                    },
-                    fontFamily: "TanseekModernProArabic",
-                    fontWeight: "bold",
-                    textAlign: "left",
-                    ml: "20px",
-                  }}
-                >
-                  {card.level}
-                </Typography>
-                <Box
-                  component="img"
-                  src={logo}
-                  sx={{
-                    position: "absolute",
-                    top: "15px",
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    width: "80px",
-                    height: "auto",
-                    opacity: "0.27",
-                  }}
-                />
-              </Box>
+              <Typography
+                sx={{
+                  fontSize: {
+                    xs: "20px",
+                    sm: "22px",
+                    md: "24px",
+                    xl: "30px",
+                  },
+                  fontFamily: "TanseekModernProArabic",
+                  fontWeight: "bold",
+                }}
+              >
+                {card.level}
+              </Typography>
+              <Box
+                component="img"
+                src={logo}
+                sx={{
+                  position: "absolute",
+                  top: "5%",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  width: "80px",
+                  height: "auto",
+                  opacity: "0.27",
+                }}
+              />
 
               <Box
-                // component="img"
-                // src={vector}
                 sx={{
                   position: "absolute",
                   bottom: "0",
                   left: "0",
                   width: "204.52px",
                   height: "269.15px",
-                  // zIndex: -1,
                 }}
               />
               <Typography
@@ -235,6 +218,7 @@ function Academy() {
                         md: "17px",
                         xl: "23px",
                       },
+
                       color: "#FFFFFF",
                     }}
                   >
@@ -254,45 +238,13 @@ function Academy() {
                     color: "#FFFFFF",
                     ml: "20px",
                   }}
-                >
-                 
-                </Typography>
-                <Box
-                  component="ul"
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "5px",
-                    mt: "5px",
-                  }}
-                >
-                  {/* {card.Prerequisites.map((item, index) => (
-                    <Box
-                      component="li"
-                      key={index}
-                      sx={{
-                        fontFamily: "TanseekModernProArabic-ExBold",
-                        listStyleType: "disc",
-                        fontSize: {
-                          xs: "14px",
-                          sm: "16px",
-                          md: "17px",
-                          xl: "27px",
-                        },
-                        color: "#FFFFFF",
-                      }}
-                    >
-                      {item}
-                    </Box>
-                  ))} */}
-                </Box>
+                ></Typography>
               </Box>
               <Button
                 sx={{
                   backgroundColor: "#88783C",
                   minWidth: "76px",
                   minHeight: "28px",
-                  // fontSize: { xs: "10px", sm: "11px" },
                   fontWeight: "400",
                   fontFamily: "TanseekModernProArabic-ExBold",
                   letterSpacing: "-0.17px",
@@ -304,8 +256,8 @@ function Academy() {
                   display: "block",
                   borderRadius: "5px",
                   textTransform: "capitalize",
-                  fontSize:'19px',
-                  padding:'5px' 
+                  fontSize: "19px",
+                  padding: "5px",
                 }}
               >
                 Start Your Journey

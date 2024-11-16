@@ -1,7 +1,4 @@
 import { useState } from "react";
-
-
-
 import dayjs from "dayjs";
 import {
   Box,
@@ -14,6 +11,8 @@ import {
   DialogTitle,
 } from "@mui/material";
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
+import eventBg from "../../home_profile_assets/event.png";
+import person1 from "../../home_profile_assets/profile_img.png";
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(dayjs());
@@ -21,12 +20,11 @@ const Calendar = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [eventTitle, setEventTitle] = useState("");
   const [openDialog, setOpenDialog] = useState(false);
-  const numberOfColumns = 7;
-  const daysInMonth = currentMonth.daysInMonth();
-  const daysArray = Array.from({ length: daysInMonth }, (_, index) =>
-    dayjs(currentMonth).date(index + 1)
-  );
 
+  const daysInMonth = currentMonth.daysInMonth();
+  const totalRows = Math.ceil(
+    (daysInMonth + currentMonth.startOf("month").day()) / 7
+  );
 
   const nextMonth = () => {
     setCurrentMonth(currentMonth.add(1, "month"));
@@ -50,28 +48,22 @@ const Calendar = () => {
   };
 
   return (
-    <Box
-      sx={{
-        padding: { xs: "5px", md: "20px" }, // تحسين الحشوة على الشاشات الصغيرة
-        color: "#fff",
-      }}
-    >
+    <Box sx={{ padding: { xs: "5px", md: "20px" }, color: "#fff" }}>
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", md: "row" }, // تغيير الاتجاه على الشاشات الصغيرة
+          flexDirection: { xs: "column", md: "row" },
           alignItems: "center",
           gap: "5px",
           fontSize: "14px",
           fontFamily: "SF Pro Display",
-          
           mb: 2,
         }}
       >
         <Button
           sx={{
             width: "100%",
-            maxWidth: "106px", // تحديد أقصى عرض
+            maxWidth: "106px",
             height: "36px",
             background: "linear-gradient(90deg, #C3AD57 0%, #5D5329 100%)",
             color: "#fff",
@@ -85,7 +77,7 @@ const Calendar = () => {
         <Button
           sx={{
             width: "100%",
-            maxWidth: "106px", // تحديد أقصى عرض
+            maxWidth: "106px",
             height: "36px",
             color: "#fff",
             fontSize: { xs: "12px", md: "14px" },
@@ -99,7 +91,7 @@ const Calendar = () => {
         <Button
           sx={{
             width: "100%",
-            maxWidth: "140px", // تحديد أقصى عرض
+            maxWidth: "140px",
             height: "36px",
             color: "#fff",
             fontSize: { xs: "12px", md: "14px" },
@@ -126,7 +118,7 @@ const Calendar = () => {
             alignItems: "center",
             justifyContent: "center",
             marginBottom: "20px",
-            gap: { xs: "10px", md: "30px" }, // تصغير الفجوات على الشاشات الأصغر
+            gap: { xs: "10px", md: "30px" },
           }}
         >
           <IoMdArrowDropleft
@@ -144,10 +136,10 @@ const Calendar = () => {
               sx={{
                 margin: "0 10px",
                 color: "#C3AD57",
-                width: { xs: "150px", md: "250px" }, // تحسين العرض على الشاشات الصغيرة
-                maxHeight:'80px',
+                width: { xs: "150px", md: "250px" },
+                maxHeight: "80px",
                 fontFamily: "Motken noqta ii",
-                fontSize: { xs: "18px", md: "25px" }, // حجم النص استجابة
+                fontSize: { xs: "18px", md: "25px" },
                 position: "relative",
                 "&::after": {
                   content: '""',
@@ -156,7 +148,8 @@ const Calendar = () => {
                   width: "100%",
                   height: "10px",
                   left: "0",
-                  background: 'linear-gradient(90deg, #191919 57.89%, #856A30 100%)',
+                  background:
+                    "linear-gradient(90deg, #191919 57.89%, #856A30 100%)",
                 },
               }}
             >
@@ -181,91 +174,128 @@ const Calendar = () => {
             display: "grid",
             gridTemplateColumns: "repeat(7, 1fr)",
             justifyContent: "center",
-            mt: "20px", // تصغير التباعد العلوي للشاشات الأصغر
-            border: "0px solid #856A30",
-            borderCollapse: "collapse",
+            mt: "20px",
           }}
         >
-          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-            <Typography
-              sx={{
-                color: "#C3AD57",
-                fontFamily: "Motken noqta ii",
-                borderBottom: "0px solid #856A30",
-                textAlign: "center",
-                fontSize: { xs: "12px", md: "14px" }, // حجم النص استجابة
-              }}
-              key={day}
-            >
-              {day}
-            </Typography>
-          ))}
-
-          {/* Empty spaces at the start */}
-          {Array.from({ length: currentMonth.startOf("month").day() }).map(
-            (_, index) => (
-              <Box key={index} sx={{ borderBottom: "1px solid #856A30" }}></Box>
-            )
-          )}
-          {/* {Array.from({ length: currentMonth.startOf("month").day() }).map(
-            (_, index) => (
-              <Box key={index} sx={{ borderBottom: "1px solid #856A30" }}></Box>
-            )
-          )} */}
-
-          {/* Display days */}
-          {daysArray.map((day) => (
-            <Box
-              key={day}
-              // key={day.format("DD")}
-              sx={{
-                borderTop: daysArray.indexOf(day)<numberOfColumns?"0px" : "1px solid #856A30",
-                borderBottom: daysArray.indexOf(day)<numberOfColumns?"0px" : "1px solid #856A30",
-                // borderRight: dayjs().weekday(0)<numberOfColumns?"0px" : "1px solid #856A30",
-
-                // borderRight: "1px solid #856A30",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                cursor: "pointer",
-                position: "relative",
-                width: "100%",
-                height: { xs: "60px", md: "100px" }, // ضبط الارتفاع للشاشات الصغيرة
-                transition: "background-color 0.3s",
-                backgroundColor: events[day.format("YYYY-MM-DD")]
-                  ? "#ffcccc"
-                  : "inherit",
-                "&:hover": { backgroundColor: "#C3AD57", color: "#000" },
-              }}
-              onClick={() => handleDateClick(day)}
-            >
-              <Typography
-                variant="body1"
-                sx={{ fontFamily: "Clarendon", fontSize: { xs: "16px", md: "30px" } }} // حجم النص استجابة
+          {["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"].map(
+            (day, index) => (
+              <Box
+                key={day}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRight: index < 6 ? "1px solid #856A30" : "none", // Border right for all except last column
+                  borderBottom: "1px solid #856A30",
+                  height: { xs: "60px", md: "100px" },
+                }}
               >
-                {day.date()}
-              </Typography>
-              {events[day.format("YYYY-MM-DD")] && (
-                <Box
+                <Typography
                   sx={{
-                    position: "absolute",
-                    top: 0,
-                    right: 0,
-                    backgroundColor: "red",
-                    color: "#fff",
-                    borderRadius: "50%",
-                    width: "15px",
-                    height: "15px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
+                    color: "#C3AD57",
+                    fontFamily: "Motken noqta ii",
+                    textAlign: "center",
+                    fontSize: { xs: "12px", md: "14px" },
                   }}
                 >
-                  !
-                </Box>
-              )}
+                  {day}
+                </Typography>
+              </Box>
+            )
+          )}
+
+          {/* Display days and empty spaces before the first day */}
+          {Array.from({ length: totalRows * 7 }).map((_, index) => {
+  const dayIndex = index - currentMonth.startOf("month").day();
+  const isDay = dayIndex >= 0 && dayIndex < daysInMonth;
+  const isLastRow = Math.floor(index / 7) === totalRows - 1; // Check if the cell is in the last row
+
+  return (
+    <Box
+      key={index}
+      sx={{
+        borderRight: (index + 1) % 7 === 0 ? "none" : "1px solid #856A30", // Remove border-right for the last column
+        borderBottom: isLastRow ? "none" : "1px solid #856A30", // Remove border-bottom for the last row
+        height: { xs: "60px", md: "100px" },
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        cursor: isDay ? "pointer" : "default",
+        position: "relative",
+        backgroundColor: isDay && events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")]
+          ? "inherit" // لا تحتاج لتغيير الخلفية إلى الأحمر
+          : "inherit",
+        "&:hover": isDay ? { backgroundColor: "#C3AD57", color: "#000" } : {},
+      }}
+      onClick={
+        isDay
+          ? () => handleDateClick(dayjs(currentMonth).date(dayIndex + 1))
+          : null
+      }
+    >
+      {isDay && (
+        <Typography
+          variant="body1"
+          sx={{
+            fontFamily: "Clarendon",
+            fontSize: events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")] ? "20px" : "30px", 
+            position: events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")] ? "absolute" : "static",
+            top: events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")] ? 5 : 'auto', 
+            left: events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")] ? 5 : 'auto',
+            textAlign: events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")] ? "left" : "center", 
+            color: events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")] ? "#CA1A1A" : "#fff",
+          }}
+        >
+          {dayjs(currentMonth).date(dayIndex + 1).date()}
+        </Typography>
+      )}
+      {isDay &&
+        events[dayjs(currentMonth).date(dayIndex + 1).format("YYYY-MM-DD")] && (
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%", // Centering it vertically
+              left: "50%", // Centering it horizontally
+              transform: "translate(-50%, -50%)", // Adjusting to center it properly
+            }}
+          >
+            <Box
+              sx={{
+                backgroundImage: `url(${eventBg})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                objectFit: "cover",
+                width: "91px",
+                height: "30px",
+                borderRadius: "50px",
+                display: "flex",
+                gap: "10px",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Box sx={{ width: "23px", height: "23px", borderRadius: "50%" }}>
+                <Box
+                  component="img"
+                  src={person1}
+                  sx={{ width: "100%", height: "100%" }}
+                />
+              </Box>
+              <Box sx={{ display: "flex", flexDirection: "column" }}>
+                <Typography sx={{ fontSize: "12px", lineHeight: "10px" }}>
+                  Amr Omar
+                </Typography>
+                <Typography sx={{ fontSize: "12px", lineHeight: "10px" }}>
+                  8:30 pm
+                </Typography>
+              </Box>
             </Box>
-          ))}
+          </Box>
+        )}
+    </Box>
+  );
+})}
+
         </Box>
       </Box>
 
@@ -286,6 +316,7 @@ const Calendar = () => {
           <Button onClick={handleAddEvent}>Add</Button>
         </DialogActions>
       </Dialog>
+
     </Box>
   );
 };

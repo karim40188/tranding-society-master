@@ -17,10 +17,8 @@ import {
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Calender from "./Components/HomeProfile/Calender";
-import Register from "./Components/Register";
 import Login from "./Components/Login";
 import News from "./Components/HomeProfile/News";
-import Test from "./Components/Test";
 import CourseWithId from "./Components/HomeProfile/CourseWithId";
 import InstructorWithId from "./Components/HomeProfile/InstructorWithId";
 import TradeAlertWithId from "./Components/HomeProfile/TradeAlertWithId";
@@ -79,14 +77,7 @@ function App() {
     },
   });
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("token")) {
-  //     setToken(localStorage.getItem("token"));
-  //     console.log(token);
-  //   } else {
-  //     window.location.href = "/login";
-  //   }
-  // }, [setToken, token]);
+ 
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -121,9 +112,7 @@ function App() {
         { path: "/scanners/3", element: <Hunter /> },
       ],
     },
-    { path: "/register", element: <Register /> },
     { path: "/login", element: <Login /> },
-    { path: "/test", element: <Test /> },
   ]);
 
   return (
