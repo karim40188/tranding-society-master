@@ -12,7 +12,7 @@ import {
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion"; 
+import { motion } from "framer-motion";
 import logo from "../../assets/logo.png";
 
 function Navbar() {
@@ -21,9 +21,6 @@ function Navbar() {
   const [hoveredLink, setHoveredLink] = useState(null);
   const [overlayVisible, setOverlayVisible] = useState(false);
   const [setHovered] = useState(false);
-
-
-  
 
   const links = [
     {
@@ -39,7 +36,6 @@ function Navbar() {
         "Sub Academy 2",
         "Sub Academy 3",
         "Sub Academy 4",
-  
       ],
     },
     {
@@ -70,7 +66,7 @@ function Navbar() {
     {
       name: "Login",
       path: "/login",
-      subLinks: [], 
+      subLinks: [],
     },
     {
       name: "Join us",
@@ -84,10 +80,9 @@ function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolling(window.scrollY > 0);
-      
-      
+
       if (overlayVisible) {
-        setOverlayVisible(false);  
+        setOverlayVisible(false);
       }
     };
 
@@ -95,7 +90,7 @@ function Navbar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [overlayVisible]); 
+  }, [overlayVisible]);
 
   const handleMouseEnter = (linkName) => {
     setHoveredLink(linkName);
@@ -103,18 +98,18 @@ function Navbar() {
     setHovered(true);
   };
 
-  
   const handleMouseLeave = () => {
     setHoveredLink(null);
     setOverlayVisible(false);
-    setHovered(false); 
+    setHovered(false);
   };
 
   return (
-    
-    <Box sx={{ 
-      marginTop: "30px",
-    }}>
+    <Box
+      sx={{
+        marginTop: "30px",
+      }}
+    >
       <AppBar
         className="navbar"
         sx={{
@@ -130,82 +125,82 @@ function Navbar() {
           mx: "auto",
           mb: scrolling ? "0" : "30px",
           backdropFilter: "blur(15.699999809265137px)",
-          backgroundColor: scrolling ? "rgba(0, 0, 0, 0.7)" : "rgba(0, 0, 0, 1)",
-          padding: { xs: "0 20px", md: "0 350px" }, 
+          backgroundColor: scrolling
+            ? "rgba(0, 0, 0, 0.7)"
+            : "rgba(0, 0, 0, 1)",
+          padding: { xs: "0 20px", md: "0 350px" },
           top: "0",
         }}
       >
         <motion.div
-            className="overlay"
-            initial={{ opacity: 0, scaleY: -50 }} 
-            animate={{
-              opacity: overlayVisible ? 1 : 10,
-              scaleY: overlayVisible ? 1 : 0, 
-            }} 
-            transition={{ duration: 0.4, ease: "easeInOut" }} 
-            style={{
-              position: "absolute",
-              backgroundColor: "black",
-              width: "100%",
-              left: "0",
-              right: "0",
-              top: "0", 
-              height: "auto",
-              paddingTop: "80px",
-              paddingBottom: "40px",
-              transformOrigin: "top", 
-              display: overlayVisible ? "block" : "none",
-            }}
-            onMouseLeave={handleMouseLeave} 
-          >
+          className="overlay"
+          initial={{ opacity: 0, scaleY: -50 }}
+          animate={{
+            opacity: overlayVisible ? 1 : 10,
+            scaleY: overlayVisible ? 1 : 0,
+          }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+          style={{
+            position: "absolute",
+            backgroundColor: "black",
+            width: "100%",
+            left: "0",
+            right: "0",
+            top: "0",
+            height: "auto",
+            paddingTop: "80px",
+            paddingBottom: "40px",
+            transformOrigin: "top",
+            display: overlayVisible ? "block" : "none",
+          }}
+          onMouseLeave={handleMouseLeave}
+        >
           {hoveredLink && (
             <Box
               sx={{
                 paddingLeft: "20%",
-               display: "flex",
-               flexDirection: "column",
-               alignItems: "start",
-               justifyContent: "start",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "start",
+                justifyContent: "start",
               }}
             >
               <Box
-              sx={{
-                fontSize: "25px",
-                fontFamily: "TanseekModernProArabic-ExBold",
-                letterSpacing: ".071em",
-                display: "flex",
-                flexDirection: "column", 
-                gap: "15px", 
-              }}
+                sx={{
+                  fontSize: "25px",
+                  fontFamily: "TanseekModernProArabic-ExBold",
+                  letterSpacing: ".071em",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "15px",
+                }}
               >
-                  {links
-                    .find((link) => link.name === hoveredLink) 
-                    .subLinks.map((subLink, index) => (
-                      <Link
+                {links
+                  .find((link) => link.name === hoveredLink)
+                  .subLinks.map((subLink, index) => (
+                    <Link
                       className="sub-link"
-                        key={index}
-                        to="#"
-                        style={{
-                          display: "block",
-                          padding: "5px 0",
-                          color: "#fff",
-                          textDecoration: "none",
-                          transition: "color 0.3s ease", 
-                        }}
-                      >
-                        {subLink}
-                      </Link>
-                    ))}
-                </Box>
-                <Box
-                    sx={{
-                      height: "10vh",
-                      backdropFilter: "blur(15.699999809265137px)",
-                      backgroundColor: "000000",
-                    }}
-                >
-                  
-                </Box>
+                      key={index}
+                      to="#"
+                      style={{
+                        display: "block",
+                        padding: "5px 0",
+                        color: "#fff",
+                        textDecoration: "none",
+                        transition: "color 0.3s ease",
+                      }}
+                    >
+                      {subLink}
+                    </Link>
+                  ))}
+              </Box>
+              <Box
+                sx={{
+                  height: "10vh",
+                  backdropFilter: "blur(15.699999809265137px)",
+                  backgroundColor: "000000",
+                }}
+              ></Box>
             </Box>
           )}
         </motion.div>
@@ -219,17 +214,19 @@ function Navbar() {
             gap: "100px",
           }}
         >
-          <Box sx={{ 
-            display: "flex", 
-            alignItems: "center",
-             flexGrow: 1,
-             justifyContent: "center",
-            }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              flexGrow: 1,
+              justifyContent: "center",
+            }}
+          >
             <Box
               component="img"
               src={logo}
               sx={{
-                maxWidth: { xs: "50px", md: "65px" }, 
+                maxWidth: { xs: "50px", md: "65px" },
                 maxHeight: { xs: "50px", md: "70px" },
                 animation: "fadeIn 0.5s ease",
               }}
@@ -239,7 +236,7 @@ function Navbar() {
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
-              gap: { xs: "20px", md: "20px" }, 
+              gap: { xs: "20px", md: "20px" },
               alignItems: "center",
               justifyContent: "center",
             }}
@@ -250,8 +247,8 @@ function Navbar() {
                 sx={{
                   position: "relative",
                   "&:hover": {
-                    transition: "all 1s ease", 
-                   
+                    transition: "all 1s ease",
+
                     ...(link.name !== "Join us" && {
                       "&:after": {
                         content: '""',
@@ -269,7 +266,15 @@ function Navbar() {
                   to={link.path}
                   className="link"
                   onMouseEnter={() => {
-                    if (link.name !== "Join us" && link.name !== "Login" && link.name !== "Home"&& link.name !== "Academy"&& link.name !== "Sessions" && link.name !== "Trade Alerts"  && link.name !== "Scanners") { 
+                    if (
+                      link.name !== "Join us" &&
+                      link.name !== "Login" &&
+                      link.name !== "Home" &&
+                      link.name !== "Academy" &&
+                      link.name !== "Sessions" &&
+                      link.name !== "Trade Alerts" &&
+                      link.name !== "Scanners"
+                    ) {
                       handleMouseEnter(link.name);
                     }
                   }}
@@ -283,9 +288,9 @@ function Navbar() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      fontSize: { xs: "16px", md: "25px" }, 
+                      fontSize: { xs: "16px", md: "25px" },
                       width: "150px",
-                    
+
                       ...(link.name === "Join us" && {
                         background:
                           "linear-gradient(90deg, #D6AA1C 0%, #5D5329 100%)",
@@ -299,12 +304,11 @@ function Navbar() {
                         right: "-85px",
                         borderRadius: "5px",
                         fontSize: "30px",
-                        fontWeight:"bold",
+                        fontWeight: "bold",
                         position: "relative",
                         "&:hover": {
                           background:
                             "linear-gradient(180deg, #dfb247 0%, #ecbc56 100%)",
-                            
                         },
                       }),
                     }}
@@ -330,7 +334,17 @@ function Navbar() {
           </Box>
         </Toolbar>
       </AppBar>
-      <Drawer anchor="left" open={isOpen} onClose={handleToggle} sx={{zIndex:'12'}}>
+      <Drawer
+        anchor="left"
+        open={isOpen}
+        onClose={handleToggle}
+        sx={{ zIndex: "50" }}
+        PaperProps={{
+          sx: {
+            width: "250px",
+          },
+        }}
+      >
         <List>
           {links.map((link) => (
             <ListItem

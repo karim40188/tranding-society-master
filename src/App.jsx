@@ -9,11 +9,7 @@ import AcademyProfile from "./Components/HomeProfile/AcademyProfile";
 import Layout2 from "./Components/Layout2";
 import TradeAlertProfile from "./Components/HomeProfile/TradeAlertProfile";
 import { useContext, useEffect } from "react";
-import {
-  DarkModeContext,
-  LoadingContext,
-
-} from "./Components/context/Context";
+import { DarkModeContext, LoadingContext } from "./Components/context/Context";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Calender from "./Components/HomeProfile/Calender";
@@ -30,6 +26,8 @@ import Gang from "./Components/HomeProfile/Gang";
 import GangPro from "./Components/HomeProfile/GangPro";
 import RubberBrand from "./Components/HomeProfile/RubberBrand";
 import Hunter from "./Components/HomeProfile/Hunter";
+import ProtectedRouter from "./Components/ProtectedRouter";
+import PublicRoutes from "./Components/PublicRoutes";
 
 function App() {
   let { setLoading } = useContext(LoadingContext);
@@ -77,8 +75,6 @@ function App() {
     },
   });
 
- 
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -88,28 +84,144 @@ function App() {
   }, [setLoading]);
 
   const router = createBrowserRouter([
-    { index: true, element: <Layout /> },
+    { index: true, element:<Layout />  },
     {
       path: "/",
-      element: <Layout2 />,
+      element: (
+        <ProtectedRouter>
+          <Layout2 />
+        </ProtectedRouter>
+      ),
       children: [
-        { path: "/home", element: <HomeProfile /> },
-        { path: "/academy", element: <AcademyProfile /> },
-        { path: "/tradealerts", element: <TradeAlertProfile /> },
-        { path: "/calender", element: <Calender /> },
-        { path: "/news", element: <News /> },
-        { path: "/courses/:id", element: <CourseWithId /> },
-        { path: "/instructor/:id", element: <InstructorWithId /> },
-        { path: "/offers/:id", element: <TradeAlertWithId /> },
-        { path: "/sessions", element: <OnlineSessions /> },
-        { path: "/categories", element: <Categories /> },
-        { path: "/video/:videoUrl", element: <FullScreenVideo /> },
-        { path: "/leaderboard", element: <Leaderboard /> },
-        { path: "/leaderboard", element: <Leaderboard /> },
-        { path: "/scanners/1", element: <Gang /> },
-        { path: "/scanners/1", element: <GangPro /> },
-        { path: "/scanners/2", element: <RubberBrand /> },
-        { path: "/scanners/3", element: <Hunter /> },
+        {
+          path: "/home",
+          element: (
+            <ProtectedRouter>
+              {" "}
+              <HomeProfile />
+            </ProtectedRouter>
+          ),
+        },
+        {
+          path: "/academy",
+          element: (
+            <ProtectedRouter>
+              <AcademyProfile />
+            </ProtectedRouter>
+          ),
+        },
+        {
+          path: "/tradealerts",
+          element: (
+            <ProtectedRouter>
+              <TradeAlertProfile />{" "}
+            </ProtectedRouter>
+          ),
+        },
+        {
+          path: "/calender",
+          element: (
+            <ProtectedRouter>
+              <Calender />
+            </ProtectedRouter>
+          ),
+        },
+        {
+          path: "/news",
+          element: (
+            <ProtectedRouter>
+              <News />
+            </ProtectedRouter>
+          ),
+        },
+        {
+          path: "/courses/:id",
+          element: (
+            <ProtectedRouter>
+              <CourseWithId />{" "}
+            </ProtectedRouter>
+          ),
+        },
+        {
+          path: "/instructor/:id",
+          element: (
+            <ProtectedRouter>
+              <InstructorWithId />{" "}
+            </ProtectedRouter>
+          ),
+        },
+        {
+          path: "/offers/:id",
+          element: (
+            <ProtectedRouter>
+              <TradeAlertWithId />
+            </ProtectedRouter>
+          ),
+        },
+        {
+          path: "/sessions",
+          element: (
+            <ProtectedRouter>
+              <OnlineSessions />{" "}
+            </ProtectedRouter>
+          ),
+        },
+        {
+          path: "/categories",
+          element: (
+            <ProtectedRouter>
+              <Categories />{" "}
+            </ProtectedRouter>
+          ),
+        },
+        {
+          path: "/video/:videoUrl",
+          element: (
+            <ProtectedRouter>
+              <FullScreenVideo />{" "}
+            </ProtectedRouter>
+          ),
+        },
+        {
+          path: "/leaderboard",
+          element: (
+            <ProtectedRouter>
+              <Leaderboard />{" "}
+            </ProtectedRouter>
+          ),
+        },
+        {
+          path: "/scanners/1",
+          element: (
+            <ProtectedRouter>
+              <Gang />{" "}
+            </ProtectedRouter>
+          ),
+        },
+        {
+          path: "/scanners/1",
+          element: (
+            <ProtectedRouter>
+              <GangPro />
+            </ProtectedRouter>
+          ),
+        },
+        {
+          path: "/scanners/2",
+          element: (
+            <ProtectedRouter>
+              <RubberBrand />
+            </ProtectedRouter>
+          ),
+        },
+        {
+          path: "/scanners/3",
+          element: (
+            <ProtectedRouter>
+              <Hunter />{" "}
+            </ProtectedRouter>
+          ),
+        },
       ],
     },
     { path: "/login", element: <Login /> },

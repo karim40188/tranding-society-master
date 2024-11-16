@@ -1,36 +1,37 @@
+/* eslint-disable no-irregular-whitespace */
 import { Box, Button, TextField, Typography } from "@mui/material";
 import registerLogo from "../assets/register_img.png";
 import { useFormik } from "formik";
 import axios from "axios";
 import * as Yup from "yup";
-import {  useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
   let [err, setErr] = useState(false);
   let navigate = useNavigate();
   async function signIn(values) {
-    let res = await axios.post(`https://tradingsociety.net/api/api/v1/login`, values).catch((err) => {
-      console.log(err?.response?.data?.message?.email[0]);
-      setErr(err?.response?.data?.message?.email[0]);
-    });
-
-    if (res?.data?.status == true) {
-      localStorage.setItem("token", res?.data?.token);
-      navigate("/");
+    try {
+      let res = await axios.post(
+        `https://tradingsociety.net/api/api/v1/login`,
+        values
+      );
+      if (res?.data?.status === true) {
+        localStorage.setItem("token", res?.data?.token);
+        navigate("/");
+      }
+    } catch (err) {
+      const errorMessage =
+        err?.response?.data?.message?.email?.[0] ||
+        "Invalid login credentials.";
+      setErr(errorMessage);
     }
-    console.log(res);
   }
-
-
 
   let validationSchema = Yup.object({
     email: Yup.string()
-      .required("email is required")
-      .matches(
-        /^[\w._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
-        "email is not valid"
-      ),
+      .required("email is required"),
+     
     password: Yup.string()
       .required("password is required")
       .matches(/^\w{8,}$/, "Password must be at least 8 characters long"),

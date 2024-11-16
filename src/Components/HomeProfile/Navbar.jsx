@@ -23,7 +23,6 @@ function Navbar() {
         top:'0',
         left:'0',
         right:'0',
-        // width: "100%",
         backgroundColor: "#000",
         height: "80px",
         display: "flex",
