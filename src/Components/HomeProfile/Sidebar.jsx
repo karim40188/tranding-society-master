@@ -13,13 +13,43 @@ import { SlCalender } from "react-icons/sl";
 import { LuNewspaper } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 import { TokenContext } from "../context/Context";
+import axios from "axios";
 
 function Sidebar() {
-  let { sidebarOpen, setSidebarOpen } = useContext(TokenContext);
+  let {
+    sidebarOpen,
+    setSidebarOpen,
+    userId,
+    setUserId,
+    setUserImg,
+    userFirstName,
+    setUserFirstName,
+    lastName,
+    setLastName,
+  } = useContext(TokenContext);
   let [activeLink, setActiveLink] = useState(false);
   let navigate = useNavigate();
 
   let sidebarRef = useRef(null);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  async function getUserWithId() {
+    let res = await axios.get("https://tradingsociety.net/api/api/v1/user", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+
+    setUserImg(res?.data?.user.profile_image);
+    setUserFirstName(res?.data?.user?.user_first_name);
+    setUserId(res?.data?.user?.user_id);
+    setLastName(res?.data?.user?.user_last_name);
+  }
+
+  useEffect(() => {
+    getUserWithId();
+  }, [getUserWithId]);
+
   useEffect(() => {
     let handleClickOutSide = (event) => {
       if (
@@ -36,7 +66,7 @@ function Sidebar() {
     return () => {
       window.removeEventListener("mousedown", handleClickOutSide);
     };
-  }, []);
+  }, [setSidebarOpen]);
 
   let [scannersOpen, setScannersOpen] = useState(false);
 
@@ -69,7 +99,6 @@ function Sidebar() {
     },
     { name: "Calenders", path: "/calender", icon: <SlCalender /> },
     { name: "News", path: "/news", icon: <LuNewspaper /> },
-    { name: "Gang", path: "/gang-scanner", icon: <LuNewspaper /> },
   ]);
 
   const scannersItems = [
@@ -85,8 +114,8 @@ function Sidebar() {
       sx={{
         position: { xs: "fixed", md: "sticky" },
         backgroundColor: "black",
-        width: sidebarOpen? "300px":"0",
-        transform: sidebarOpen ? "translateX(0)" : "translateX(-300px)",
+        width: sidebarOpen ? "250px" : "0",
+        transform: sidebarOpen ? "translateX(0)" : "translateX(-250px)",
         zIndex: "99999",
         minHeight: "100vh",
         overflow: "hidden",
@@ -120,7 +149,10 @@ function Sidebar() {
             boxShadow: "0px 0px 15px rgba(213, 172 , 14, 0.54)",
           }}
         >
-          <Box className="flex items-center" sx={{ gap: "5px" }}>
+          <Box
+            className="flex items-center"
+            sx={{ justifyContent: "space-around", width: "100%" }}
+          >
             {/* Image Profile Of Card */}
             <Box component="img" src={profile_img} />
             <Box>
@@ -131,7 +163,7 @@ function Sidebar() {
                   fontFamily: "Motken noqta ii",
                 }}
               >
-                Abdelrahman..
+                {userFirstName} {lastName}
               </Typography>
               <Typography
                 sx={{
@@ -141,7 +173,7 @@ function Sidebar() {
                   letterSpacing: "-4%",
                 }}
               >
-                ID: 123456
+                ID: {userId}
               </Typography>
             </Box>
           </Box>

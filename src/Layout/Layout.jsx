@@ -15,6 +15,7 @@ import AboutUsText from "../Components/Home/AboutUsText";
 
 function Layout() {
   let { isLoading } = useContext(LoadingContext);
+
   return (
     <>
       {isLoading ? (
@@ -22,7 +23,6 @@ function Layout() {
           sx={{
             width: "100%",
             height: "100vh",
-            // overflow: "hidden",
             position: "fixed",
             top: "0",
             left: "0",
@@ -31,39 +31,49 @@ function Layout() {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "#000",
-            overflow: "hidden",
-            textAlign:"center"
+            textAlign: "center",
           }}
         >
-      <span className="loader" style={{fontFamily:"Bayon"}}>Trading Society</span>
+          <span className="loader" style={{ fontFamily: "Bayon" }}>
+            Trading Society
+          </span>
         </Box>
       ) : (
         <Box>
+          {/* شريط التنقل */}
           <Box>
             <Navbar />
           </Box>
-          <Box sx={{ width: "91%", mx: "auto", mb: "200px" }}>
+
+          {/* الأقسام مع معرفات id */}
+          <Box id="banner-section" sx={{ width: "91%", mx: "auto", mb: "200px" }}>
             <Banner />
             <AboutUsText />
           </Box>
-          <Box sx={{ mt: "0px" }}>
+
+          <Box id="mission-vision-section" sx={{ mt: "0px" }}>
             <MissionAndVison />
           </Box>
-          <Box sx={{ mt: "150px" }}>
+
+          <div id="tradealerts-section" style={{ marginTop: "150px" }}>
             <TradeAlert />
-          </Box>
-          <Box sx={{ mt: "150px", width: "91%", margin: "auto" }}>
+          </div>
+
+          <Box id="mobile-app-section" sx={{ mt: "150px", width: "91%", margin: "auto" }}>
             <OurMobileApp />
           </Box>
+
           <Box>
-            <Box sx={{ mt: { xs: "0", lg: "50px" } }}>
+            <Box id="ceo-mf-section" sx={{ mt: { xs: "0", lg: "50px" } }}>
               <CeoMF />
             </Box>
-            <Box sx={{ mt: { xs: "0", lg: "50px" } }}>
+            <Box id="ceo-mh-section" sx={{ mt: { xs: "0", lg: "50px" } }}>
               <CeoMH />
             </Box>
           </Box>
+
           <Box
+            id="academy-section"
             sx={{
               width: "91%",
               margin: "auto",
@@ -72,12 +82,12 @@ function Layout() {
           >
             <Academy />
 
-            <Box sx={{ width: "91%", mt: "300px", mx: "auto" }}>
+            <Box id="scanners-section" sx={{ width: "91%", mt: "300px", mx: "auto" }}>
               <OurScanners />
             </Box>
           </Box>
 
-          <Box sx={{ mt: "50px" }}>
+          <Box id="footer-section" sx={{ mt: "50px" }}>
             <Footer />
           </Box>
         </Box>

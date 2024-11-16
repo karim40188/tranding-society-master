@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-irregular-whitespace */
 import { Box, Button, TextField, Typography } from "@mui/material";
 import registerLogo from "../assets/register_img.png";
@@ -5,9 +6,10 @@ import { useFormik } from "formik";
 import axios from "axios";
 import * as Yup from "yup";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
+
   let [err, setErr] = useState(false);
   let navigate = useNavigate();
   async function signIn(values) {
@@ -20,18 +22,21 @@ function Login() {
         localStorage.setItem("token", res?.data?.token);
         navigate("/");
       }
+
+      console.log(res)
     } catch (err) {
       const errorMessage =
         err?.response?.data?.message?.email?.[0] ||
         "Invalid login credentials.";
       setErr(errorMessage);
     }
+
+  
   }
 
   let validationSchema = Yup.object({
-    email: Yup.string()
-      .required("email is required"),
-     
+    email: Yup.string().required("email is required"),
+
     password: Yup.string()
       .required("password is required")
       .matches(/^\w{8,}$/, "Password must be at least 8 characters long"),
@@ -166,18 +171,17 @@ function Login() {
             )}
           </Box>
 
-          <Typography
-            onClick={() => {
-              navigate("/register");
-            }}
-            sx={{
+          <Link
+            to="https://www.hfssociety.com"
+            style={{
               textDecoration: "underline",
               cursor: "pointer",
               width: "30%",
+              color: "#fff",
             }}
           >
             Create account
-          </Typography>
+          </Link>
           <Button
             sx={{
               boxShadow: " 0px 0px 8.4px 1px #ECBC56",

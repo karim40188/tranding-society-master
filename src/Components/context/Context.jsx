@@ -34,7 +34,6 @@ export function DarkModeContextProvider({ children }) {
 
 export let TokenContext = createContext("");
 
-
 // eslint-disable-next-line react/prop-types
 export function TokenContextProvider({ children }) {
   let [token, setToken] = useState(null);
@@ -45,14 +44,39 @@ export function TokenContextProvider({ children }) {
       console.log(token);
     } else {
       // window.location.href = "/login";
-      return ;
+      return;
     }
   }, [setToken, token]);
 
   let [sidebarOpen, setSidebarOpen] = useState(false);
+
+  let [userEmail, setUserEmail] = useState("");
+  let [userId, setUserId] = useState("");
+  let [userFirstName, setUserFirstName] = useState("");
+  let [phone, setPhone] = useState("");
+  let [userImg, setUserImg] = useState(null);
+  let [lastName, setLastName] = useState("");
+
   return (
     <TokenContext.Provider
-      value={{ token, setToken, sidebarOpen, setSidebarOpen }}
+      value={{
+        token,
+        setToken,
+        sidebarOpen,
+        setSidebarOpen,
+        userFirstName,
+        setUserFirstName,
+        phone,
+        setPhone,
+        userEmail,
+        setUserEmail,
+        userId,
+        setUserId,
+        userImg,
+        setUserImg,
+        lastName,
+        setLastName
+      }}
     >
       {children}
     </TokenContext.Provider>

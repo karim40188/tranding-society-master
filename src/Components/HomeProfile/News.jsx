@@ -52,9 +52,9 @@ function News() {
               width: "90%",
               display: "grid",
               gridTemplateColumns: { xs: "repeat(2, 1fr)", sm: "repeat(3, 1fr)", md: "repeat(4, 1fr)" },
-              gap: "10px",
+              gap: "20px",
               mt: { xs: "20px", md: "50px", xl: "220px" },
-              padding: { xs: "0 10px", md: "0 20px" }, // Padding للهوامش على الشاشات الصغيرة
+              padding: { xs: "0 10px", md: "0 20px" }, 
             }}
           >
             {news.map((item, index) => (
@@ -63,11 +63,11 @@ function News() {
                 sx={{
                   borderRadius: "15px",
                   backgroundColor: "#D9D9D9",
-                  overflow: "hidden", // لتحسين العرض داخل الصندوق
+                  overflow: "hidden", 
                   display: "flex",
                   flexDirection: "column",
-                  transition: "transform 0.3s", // تأثير التحول
-                  "&:hover": { transform: "scale(1.05)" }, // تأثير عند التحويم
+                  transition: "transform 0.3s", 
+                  "&:hover": { transform: "scale(1.05)" }, 
                 }}
               >
                 <Box component="img" src={item.img} sx={{ width: "100%", height: "auto" }} />

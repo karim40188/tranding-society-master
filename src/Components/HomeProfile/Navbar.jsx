@@ -5,8 +5,6 @@ import { TokenContext } from "../context/Context";
 import { useContext } from "react";
 import { CiMenuBurger } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import lang_img from "../../home_profile_assets/lang.png";
-import { IoMdNotifications } from "react-icons/io";
 
 function Navbar() {
   let { sidebarOpen, setSidebarOpen } = useContext(TokenContext);
@@ -83,31 +81,7 @@ function Navbar() {
           gap: { xs: "10px", md: "15px" },
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            gap: { xs: "10px", md: "20px" },
-            alignItems: "center",
-          }}
-        >
-          <Box
-            component="img"
-            src={lang_img}
-            sx={{
-              width: { xs: "20px", md: "30px" },
-              transition: "transform 0.3s ease",
-            }}
-          />
-       
-          <IoMdNotifications
-            style={{
-              color: "#ecbc56",
-              fontSize: "20px",
-              transition: "transform 0.3s ease",
-              "&:hover": { transform: "scale(1.1)" },
-            }}
-          />
-        </Box>
+     
         <Box
           onClick={sidebarToggle}
           sx={{

@@ -16,7 +16,7 @@ function TradeAlertWithId() {
   async function getTradeAlert(id) {
     let res = await axios.get(`${baseUrl}/offers/${id}`, {
       headers: {
-        Authorization: `Bearer 29|Ty80fgEhfB5ll2b5og6dTY5WJWqIxwPCZRD2jVNOa50891a8`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     });
     setOffer(res?.data?.offer);

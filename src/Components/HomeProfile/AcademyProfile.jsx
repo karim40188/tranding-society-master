@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
