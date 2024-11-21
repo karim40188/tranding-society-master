@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import person1 from "../../assets/person1234.png";
+import person1 from "../../assets/person1234.webp";
 import signature from "../../assets/signature.png";
-
 
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -33,7 +32,7 @@ function CeoMF() {
         flexDirection: { xs: "column-reverse", lg: "row-reverse" },
         gap: "10px",
         p: { xs: 2, lg: 0 },
-        overflow:'hidden'
+        overflow: "hidden",
       }}
     >
       <Box
@@ -95,17 +94,17 @@ function CeoMF() {
               succeed in the Forex market. Whether you’re a beginner just
               starting or a seasoned trader looking to sharpen your skills,
               we’re here to guide you every step of the way. Our courses are
-              designed to be clear, straightforward, and easy to understand,
-              so you can focus on what matters most—your growth and success.
+              designed to be clear, straightforward, and easy to understand, so
+              you can focus on what matters most—your growth and success.
             </Typography>
             <Typography sx={{ mt: "10px" }}>
-              But we’re more than just an educational platform. At the heart
-              of Trading Society is a strong community where traders connect,
-              learn, and grow together. We believe in the power of
-              collaboration and sharing experiences. When we support each
-              other, we all win. Thank you for being a part of our journey.
-              Let’s learn, grow, and succeed together! Wishing you all the
-              best in your trading journey,
+              But we’re more than just an educational platform. At the heart of
+              Trading Society is a strong community where traders connect,
+              learn, and grow together. We believe in the power of collaboration
+              and sharing experiences. When we support each other, we all win.
+              Thank you for being a part of our journey. Let’s learn, grow, and
+              succeed together! Wishing you all the best in your trading
+              journey,
             </Typography>
             <Box
               sx={{
@@ -115,20 +114,21 @@ function CeoMF() {
                 justifyContent: "center",
                 mt: "20px",
                 ml: "auto",
-                mr:'20%',
+                mr: "20%",
               }}
-            >
+            ></Box>
+            <Box sx={{}}>
               <Box
                 sx={{
                   position: "relative",
 
                   "&::after": {
                     content: '""',
-                    width: { xs: "148px", lg: "301px" },
+                    width: { xs: "160px", lg: "301px" },
                     position: "absolute",
                     border: "0.6px solid #ECBC56",
                     bottom: "20px",
-                    left: "-20px",
+                    left: "0px",
                   },
                 }}
               >
@@ -137,22 +137,23 @@ function CeoMF() {
                   src={signature}
                   className="filter"
                   sx={{
-                    width: "100%",
+                    width: "150px",
                     height: "auto",
                     display: "block",
                   }}
                 />
               </Box>
-            </Box>
 
-            <Typography
-              sx={{
-                color: "text.primary",
-                fontSize: { xs: "14px", sm: "16px" },
-              }}
-            >
-              CEO, Trading Society
-            </Typography>
+              <Typography
+                sx={{
+                  color: "text.primary",
+                  fontSize: { xs: "14px", sm: "16px" },
+                  textAlign: "left",
+                }}
+              >
+                Trading Society, CEO,
+              </Typography>
+            </Box>
           </Box>
         </motion.div>
       </Box>

@@ -59,7 +59,7 @@ function TradeAlert() {
                     width: "100%",
                     height: "100%",
                     objectFit: "contain",
-                    zIndex: "99999",
+                    zIndex: "10",
                     position: "absolute",
                     transform: { xs: "translateX(-130px)", md: "none" },
                   }}
@@ -75,7 +75,7 @@ function TradeAlert() {
                     transform: "translate(0%, -15%)",
                     width: { xs: "120px", md: "250px" }, // حجم أصغر للجهاز اللوحي
                     height: { xs: "100px", md: "204.65px" },
-                    zIndex: "99999",
+                    zIndex: "10",
                   }}
                 >
                   <Box

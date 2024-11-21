@@ -5,14 +5,23 @@ function BannerProfile() {
   return (
     <Box
       sx={{
-        width: "90%",
-        mx:"auto"
+        width: "100%",
+        height: {xs:"200px",md:"400px"},
+        mx: "auto",
       }}
     >
       <Box
         component="img"
         src={profileBanner}
-        sx={{ width: "100%", borderRadius: "15px", backgroundImage: "cover" }}
+        sx={{
+          width: "100%",
+          height: "100%",
+          borderRadius: "15px",
+          backgroundSize: "cover",
+          objectFit: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition:'center'
+        }}
       />
     </Box>
   );

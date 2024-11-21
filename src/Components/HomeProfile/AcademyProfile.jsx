@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { Box, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import OurCourses from "./OurCourses";
 import axios from "axios";
@@ -10,17 +10,19 @@ import { useNavigate } from "react-router-dom";
 import { HiOutlineXMark } from "react-icons/hi2";
 import { motion } from "framer-motion";
 import BannerProfile from "./BannerProfile";
+import { DarkModeContext } from "../context/Context";
 
 function AcademyProfile() {
   let [instructors, setInstructors] = useState([]);
   let [popup, setPopup] = useState(false);
   let [instructorWithId, setInstructorWithId] = useState({});
+  let {baseUrl}=useContext(DarkModeContext)
 
   async function getAllInstructors() {
     let res = await axios.get(
-      `https://tradingsociety.net/api/api/v1/instructor`,
+      `${baseUrl}/instructor`,
       {
-        headers: {
+        headers: { 
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
@@ -30,7 +32,7 @@ function AcademyProfile() {
 
   async function getInstructorCourses(id) {
     let res = await axios.get(
-      `https://tradingsociety.net/api/api/v1/instructor_courses/${id}`,
+      `${baseUrl}/instructor_courses/${id}`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

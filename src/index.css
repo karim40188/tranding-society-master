@@ -5,7 +5,7 @@
 body {
   background-color: #191919 !important;
   color: #ffffff;
-  overflow-x:hidden;
+  overflow-x: hidden;
 }
 
 .flex {
@@ -23,8 +23,6 @@ body {
   justify-content: center;
 }
 
-
-
 .text-field {
   color: #fff !important;
 }
@@ -39,6 +37,12 @@ body {
   box-sizing: border-box;
   width: 100%;
   letter-spacing: 5px;
+}
+
+.sidebar-link:hover {
+  background: linear-gradient(90deg, #191919 30.89%, #856a30 100%);
+  border-radius: 12px;
+  height: 50px !important;
 }
 .loader::after {
   content: "Trading Society";
@@ -127,6 +131,21 @@ html {
   background: linear-gradient(90deg, #191919 57.89%, #856a30 100%);
   margin: 0 auto;
   transform: translateX(-55px);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #d6aa1c 0%, #5d5329 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: bold;
+  filter: drop-shadow(0px 1px 16.6px #ecbc56);
+}
+
+.progress-bar {
+  border: 16px solid;
+
+  border-image-source: linear-gradient(180deg, #fe4438 13.32%, #e4cb86 100%);
 }
 .active {
   background-color: #ecbc56;

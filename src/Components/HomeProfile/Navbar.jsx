@@ -4,6 +4,8 @@ import brand from "../../assets/brand.png";
 import { TokenContext } from "../context/Context";
 import { useContext } from "react";
 import { CiMenuBurger } from "react-icons/ci";
+import { IoMenu } from "react-icons/io5";
+
 import { useNavigate } from "react-router-dom";
 
 function Navbar() {
@@ -25,6 +27,9 @@ function Navbar() {
         height: "80px",
         display: "flex",
         alignItems: "center",
+        borderRadius:"15px"
+
+
       }}
     >
       <Box
@@ -96,7 +101,7 @@ function Navbar() {
             },
           }}
         >
-          <CiMenuBurger />
+          <IoMenu />
         </Box>
       </Box>
     </Box>

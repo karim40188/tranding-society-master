@@ -48,9 +48,9 @@ function Cards() {
   return (
     <Box
       sx={{
-        width: "92%",
+        width: "100%",
         display: "flex",
-        flexDirection: "column",
+      flexWrap:"wrap",
         gap: "20px",
         mx: "auto",
         mt: "50px",
@@ -76,7 +76,7 @@ function Cards() {
         <Grid2
           sx={{
             position: "relative",
-            width: { xs: "80%", md: "400px" },
+            width: { xs: "100%", md: "400px" },
             height: "350px",
             borderRadius: "10px",
             display: "flex",
@@ -162,7 +162,7 @@ function Cards() {
             borderRadius: "10px",
             padding: "5px",
             mx: "auto",
-            width: { xs: "80%", md: "240px" },
+            width: { xs: "100%", md: "240px" },
             height: "330px",
             boxShadow: 2,
           }}
@@ -232,7 +232,7 @@ function Cards() {
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center", // Center the background image
             backgroundSize: "cover", // Optional: Adjusts the image to cover the entire area
-            width: { xs: "80%", md: "250px" },
+            width: { xs: "100%", md: "250px" },
             height: "350px",
             mx: "auto",
             p: "20px",
@@ -324,5 +324,5 @@ function Cards() {
     </Box>
   );
 }
-
+  
 export default Cards;

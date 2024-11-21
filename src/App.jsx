@@ -27,6 +27,7 @@ import GangPro from "./Components/HomeProfile/GangPro";
 import RubberBrand from "./Components/HomeProfile/RubberBrand";
 import Hunter from "./Components/HomeProfile/Hunter";
 import ProtectedRouter from "./Components/ProtectedRouter";
+import Test from "./Components/Test";
 
 function App() {
   let { setLoading } = useContext(LoadingContext);
@@ -83,7 +84,8 @@ function App() {
   }, [setLoading]);
 
   const router = createBrowserRouter([
-    { index: true, element:<Layout /> },
+    { index: true, element: <Layout /> },
+    { path: "/test", element: <Test /> },
     {
       path: "/",
       element: (

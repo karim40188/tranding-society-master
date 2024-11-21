@@ -1,9 +1,17 @@
 import { createContext, useEffect, useState } from "react";
-
 export let LoadingContext = createContext("");
 // eslint-disable-next-line react/prop-types
 export function LoadingContextProvider({ children }) {
-  let [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <LoadingContext.Provider value={{ isLoading, setLoading }}>
       {children}
@@ -21,8 +29,7 @@ export function DarkModeContextProvider({ children }) {
       console.log(prevMode);
       return !prevMode;
     });
-
-  let baseUrl = "https://tradingsociety.net/api/api/v1";
+  let baseUrl = "https://api.tradingsociety.net";
   return (
     <DarkModeContext.Provider
       value={{ darkMode, setDarkMode, toggleMode, baseUrl }}
@@ -48,7 +55,7 @@ export function TokenContextProvider({ children }) {
     }
   }, [setToken, token]);
 
-  let [sidebarOpen, setSidebarOpen] = useState(false);
+  let [sidebarOpen, setSidebarOpen] = useState(true);
 
   let [userEmail, setUserEmail] = useState("");
   let [userId, setUserId] = useState("");
@@ -75,7 +82,7 @@ export function TokenContextProvider({ children }) {
         userImg,
         setUserImg,
         lastName,
-        setLastName
+        setLastName,
       }}
     >
       {children}

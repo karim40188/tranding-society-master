@@ -4,34 +4,28 @@ import Navbar from "../Components/HomeProfile/Navbar";
 import { Outlet } from "react-router-dom";
 import FooterProfile from "./HomeProfile/FooterProfile";
 import { useContext } from "react";
-import { LoadingContext } from "./context/Context";
-
+import { LoadingContext, TokenContext } from "./context/Context";
+import TradingLoader from "./TradingLoader";
+import BottomNavbar from "./BottomNavbar";
 function Layout2() {
   let { isLoading } = useContext(LoadingContext);
+  let { sidebarOpen } = useContext(TokenContext);
 
   return (
     <Box>
       {isLoading ? (
-        <Box
-          sx={{
-            width: "100%",
-            height: "100vh",
-            position: "fixed",
-            top: "0",
-            left: "0",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#000",
-            textAlign: "center",
-          }}
-        >
-          <span className="loader" style={{ fontFamily: "Bayon" }}>
-            Trading Society
-          </span>
+        <Box>
+          <TradingLoader />
         </Box>
       ) : (
-        <Box className="" sx={{ display: "flex", overflowX: "hidden" }}>
+        <Box
+          className=""
+          sx={{
+            display: "flex",
+            overflowX: "hidden",
+            gap: sidebarOpen ? "5px" : "0px",
+          }}
+        >
           {/* Sidebar */}
 
           <Sidebar />
@@ -39,11 +33,22 @@ function Layout2() {
           <Box sx={{ width: "100%" }}>
             <Navbar />
 
-            <Box sx={{ p: "30px", minHeight: "100vh" }}>
+            <Box
+              sx={{ my: "3%", width: "98%", mx: "auto", minHeight: "100vh" }}
+            >
               <Outlet />
             </Box>
             <FooterProfile />
           </Box>
+
+          {!sidebarOpen ? (
+            <Box>
+              {" "}
+              <BottomNavbar />{" "}
+            </Box>
+          ) : (
+            ""
+          )}
         </Box>
       )}
     </Box>

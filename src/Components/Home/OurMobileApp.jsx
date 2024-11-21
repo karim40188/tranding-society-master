@@ -17,7 +17,7 @@ function OurMobileApp() {
         <Box
           sx={{
             display: "flex",
-            flexDirection: { xs: "column", md: "row" },
+            flexDirection: { xs: "column-reverse", md: "row" },
             alignItems: "center",
             justifyContent: { md: "space-between" },
             // gap: { xl: "300px" },

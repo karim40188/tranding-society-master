@@ -13,8 +13,11 @@ import {
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
 import eventBg from "../../home_profile_assets/event.png";
 import person1 from "../../home_profile_assets/profile_img.png";
+import { useNavigate } from "react-router-dom";
+
 
 const Calendar = () => {
+  let navigate = useNavigate()
   const [currentMonth, setCurrentMonth] = useState(dayjs());
   const [events, setEvents] = useState({});
   const [selectedDate, setSelectedDate] = useState(null);
@@ -85,23 +88,14 @@ const Calendar = () => {
             backgroundColor: "#000",
             borderRadius: "5px",
           }}
-        >
-          Live Meeting
-        </Button>
-        <Button
-          sx={{
-            width: "100%",
-            maxWidth: "140px",
-            height: "36px",
-            color: "#fff",
-            fontSize: { xs: "12px", md: "14px" },
-            textTransform: "capitalize",
-            backgroundColor: "#000",
-            borderRadius: "5px",
+
+          onClick={()=>{
+            navigate('/sessions')
           }}
         >
-          Recorded Meeting
+          Live Session
         </Button>
+      
       </Box>
 
       <Box

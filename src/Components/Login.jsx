@@ -7,15 +7,18 @@ import axios from "axios";
 import * as Yup from "yup";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {useContext} from "react"
+import { DarkModeContext } from "./context/Context";
 
 function Login() {
 
   let [err, setErr] = useState(false);
+  let {baseUrl}=useContext(DarkModeContext)
   let navigate = useNavigate();
   async function signIn(values) {
     try {
       let res = await axios.post(
-        `https://tradingsociety.net/api/api/v1/login`,
+        `${baseUrl}/login`,
         values
       );
       if (res?.data?.status === true) {
@@ -119,6 +122,14 @@ function Login() {
               name="email"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
+
+              slotProps={{
+                input:{
+                  style:{
+                    color:"#fff"
+                  }
+                }
+              }}
             ></TextField>
             {formik.errors.email && formik.touched.email ? (
               <Box
@@ -149,6 +160,13 @@ function Login() {
               name="password"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
+              slotProps={{
+                input:{
+                  style:{
+                    color:"#fff"
+                  }
+                }
+              }}
             ></TextField>
 
             {formik.errors.password && formik.touched.password ? (

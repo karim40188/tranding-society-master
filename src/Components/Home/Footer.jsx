@@ -293,14 +293,12 @@ function Footer() {
                 color: "#000",
                 top: "52%",
                 transform: "translateY(-50%)",
-
-                right: "10px",
+                right: {xs:"40px",md:"10px"},
                 fontSize: "15px",
                 letterSpacing: "-0.17px",
                 lineHeight: "18px",
                 textTransform: "capitalize",
 
-                // trnasform:'translate(-50%, -50%)'
               }}
             >
               Click Here

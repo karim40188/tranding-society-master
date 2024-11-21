@@ -11,8 +11,8 @@ function Gang() {
       symbol: "NASDAQ:AAPL",
       interval: "D",
       timezone: "exchange",
-      theme: "light",
-      backgroundColor: "rgba(255, 255, 255, 1)",
+      theme: "dark",
+      backgroundColor: "rgba(0, 0, 0, 1)",  // جعل الخلفية داكنة
       style: "1",
       withdateranges: true,
       hide_side_toolbar: false,
@@ -23,31 +23,32 @@ function Gang() {
       calendar: false,
       support_host: "https://www.tradingview.com",
     });
+
     const container = document.querySelector(
       ".tradingview-widget-container__widget"
     );
     container.appendChild(script);
-  }, []); // التأكد من أن التأثير يحدث مرة واحدة فقط عند التحميل
+  }, []); 
 
   return (
-    <div
+
+    <div style={{width:"100%",margin:'0 auto'}}>
+  <div
       className="tradingview-widget-container"
-      style={{ height: "100%", width: "100%" }}
+      style={{
+        height: "100vh", 
+        width: "100%", 
+        backgroundColor: "black", 
+        overflow: "hidden"  
+      }}
     >
       <div
         className="tradingview-widget-container__widget"
-        style={{ height: "calc(100% - 32px)", width: "100%" }}
+        style={{ height: "100%", width: "100%" }}
       ></div>
-      <div className="tradingview-widget-copyright">
-        <a
-          href="https://www.tradingview.com/"
-          rel="noopener nofollow"
-          target="_blank"
-        >
-          <span className="blue-text">Track all markets on TradingView</span>
-        </a>
-      </div>
     </div>
+    </div>
+  
   );
 }
 

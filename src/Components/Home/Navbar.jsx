@@ -5,27 +5,25 @@ import {
   Typography,
   IconButton,
   Drawer,
-  List,
-  ListItem,
-  ListItemText,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import logo from "../../assets/logo.png";
+import Widget from "./Widget";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
 
   const links = [
-    { name: "Home", id: "#home" },
-    { name: "Academy", id: "/academy" },
-    { name: "Sessions", id: "#sessions" },
-    { name: "Trade Alerts", id: "#tradealerts-section" },
-    { name: "Scanners", id: "#scanners" },
-    { name: "Login", id: "/login" },
-    { name: "Join us", id: "/register" },
+    { name: "Home", href: "#home" },
+    { name: "Academy", href: "#academy" },
+    { name: "Sessions", href: "#sessions" },
+    { name: "Trade Alerts", href: "#tradealerts" },
+    { name: "Scanners", href: "#scanners" },
+    { name: "Login", href: "/login" },
+    { name: "Join us", href: "https://www.hfssociety.com" },
   ];
 
   const handleToggle = () => setIsOpen(!isOpen);
@@ -42,37 +40,49 @@ function Navbar() {
   }, []);
 
   return (
-    <Box sx={{ marginTop: "30px" }}>
+    <Box
+      sx={{
+        marginTop: "30px",
+        display: "flex",
+        flexDirection: "column",
+        position: "fixed",
+        zIndex:"999",
+
+      }}
+    >
       <AppBar
         className="navbar"
         sx={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          position: scrolling ? "fixed" : "fixed",
           background: "#000000",
           maxWidth: "100%",
           height: "70px",
-          zIndex: "10",
+          zIndex: "999",
           transition: "300ms all ease",
           mx: "auto",
-          mb: scrolling ? "0" : "30px",
+          // mb: scrolling ? "0" : "30px",
           backdropFilter: "blur(15.7px)",
-          backgroundColor: scrolling ? "rgba(0, 0, 0, 0.7)" : "rgba(0, 0, 0, 1)",
-          padding: { xs: "0 20px", md: "0 350px" },
+          backgroundColor: scrolling
+            ? "rgba(0, 0, 0, 0.7)"
+            : "rgba(0, 0, 0, 1)",
+          py: "0px",
           top: "0",
         }}
       >
         <Toolbar
           sx={{
             transition: "all 1s ease",
-            justifyContent: "center",
+
+            justifyContent: "space-around",
             height: "100%",
+            width: "90%",
             alignItems: "center",
-            gap: "100px",
+            gap: "50px",
           }}
         >
-          <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1, justifyContent: "center" }}>
+          <Box sx={{ width: "100%" }}>
             <Box
               component="img"
               src={logo}
@@ -87,9 +97,8 @@ function Navbar() {
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
-              gap: { xs: "20px", md: "20px" },
               alignItems: "center",
-              justifyContent: "center",
+              justifyContent: "space-between",
             }}
           >
             {links.map((link) => (
@@ -112,10 +121,7 @@ function Navbar() {
                   },
                 }}
               >
-                <Link
-                  to={link.id}
-                  className="link"
-                >
+                <a href={link.href} className="link">
                   <Typography
                     variant="body2"
                     sx={{
@@ -128,28 +134,28 @@ function Navbar() {
                       fontSize: { xs: "16px", md: "25px" },
                       width: "150px",
                       ...(link.name === "Join us" && {
-                        background: "linear-gradient(90deg, #D6AA1C 0%, #5D5329 100%)",
+                        background:
+                          "linear-gradient(90deg, #D6AA1C 0%, #5D5329 100%)",
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
                         textAlign: "center",
                         width: "115px",
                         height: "35px",
-                        pb: "7px",
-                        right: "-85px",
                         borderRadius: "5px",
-                        fontSize: "30px",
+                        fontSize: "20px",
                         fontWeight: "bold",
                         position: "relative",
                         "&:hover": {
-                          background: "linear-gradient(180deg, #dfb247 0%, #ecbc56 100%)",
+                          background:
+                            "linear-gradient(180deg, #dfb247 0%, #ecbc56 100%)",
                         },
                       }),
                     }}
                   >
                     {link.name}
                   </Typography>
-                </Link>
+                </a>
               </Box>
             ))}
           </Box>
@@ -160,7 +166,7 @@ function Navbar() {
               color="inherit"
               sx={{
                 display: { xs: "flex", md: "none" },
-                fontSize: "2.5rem",
+                fontSize: "25px",
               }}
             >
               {isOpen ? <FaTimes /> : <FaBars />}
@@ -169,24 +175,67 @@ function Navbar() {
         </Toolbar>
       </AppBar>
 
+      <Box sx={{width:'100%',position:'fixed',zIndex:"999",top:'68px'}}>
+        <Widget />
+      </Box>
+
       <Drawer
         anchor="left"
         open={isOpen}
         onClose={handleToggle}
-        sx={{ zIndex: "50" }}
+        sx={{ zIndex: "9999" }}
+        className="filter"
         PaperProps={{
           sx: {
             width: "250px",
+            position: "relative",
+            backgroundColor: "#252525",
+            display: "flex",
+            flexDirection: "column",
+            gap: "50px",
           },
         }}
       >
-        <List>
+        <Box sx={{ width: "150px", mx: "auto", mt: "30px" }}>
+          <Box
+            component="img"
+            src={logo}
+            sx={{ width: "100%", backgroundSize: "cover" }}
+          />
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "30px",
+            height: "100%",
+            textAlign: "center",
+          }}
+        >
           {links.map((link) => (
-            <ListItem key={link.name} to={link.id} button component={Link} onClick={handleToggle}>
-              <ListItemText primary={link.name} />
-            </ListItem>
+            <a
+              href={link.href}
+              key={link.name}
+              className="sidebar-link"
+              to={link.href}
+              onClick={handleToggle}
+              style={{
+                color: "#fff",
+                textAlign: "center",
+                position: "relative",
+                width: "80%",
+                margin: "0 auto",
+                trnasition: "400ms all",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "32px",
+              }}
+            >
+              {link.name}
+            </a>
           ))}
-        </List>
+        </Box>
       </Drawer>
     </Box>
   );

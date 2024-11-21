@@ -7,21 +7,24 @@ import {
   CardContent,
   Grid,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { IoMdTime } from "react-icons/io";
 import { FaStar } from "react-icons/fa";
 import { motion } from "framer-motion"; // استيراد Framer Motion
+import { DarkModeContext } from "../context/Context";
 
 function OurCourses() {
   let [categories, setCategories] = useState([]);
   let [currentCategory, setCurrentCategory] = useState(null);
   let [activeCategory, setActiveCategory] = useState(null);
+
+  let {baseUrl}=useContext(DarkModeContext)
   let navigate = useNavigate();
 
   async function getCourses() {
-    let res = await axios.get(`https://tradingsociety.net/api/api/v1/courses`, {
+    let res = await axios.get(`${baseUrl}/courses`, {
       headers: {
         Authorization: `Bearer 29|Ty80fgEhfB5ll2b5og6dTY5WJWqIxwPCZRD2jVNOa50891a8`,
       },

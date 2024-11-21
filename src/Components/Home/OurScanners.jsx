@@ -13,14 +13,21 @@ import TelegramButton from "../WathsAppButton";
 function OurScanners() {
   return (
     <>
-      <Grid2 container justifyContent="space-between" alignItems="center" sx={{}}>
-        <Grid2
-          size={{ xs: 12, md: 3.5 }}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexWrap: "wrap",
+        }}
+      >
+        <Box
           sx={{
             position: "relative",
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
+            width: { xs: "100%", md: "40%" },
           }}
         >
           <Box>
@@ -110,22 +117,31 @@ function OurScanners() {
               />
             </motion.div>
           </Box>
-        </Grid2>
+        </Box>
 
-        <Grid2 size={{ xs: 12, md: 8 }}>
+        <Box
+          sx={{
+            width: { xs: "100%", md: "60%" },
+            mx: "auto",
+            display: "flex",
+            justifyContent: "center",
+            alignSelf:'center',
+            transform:{xs:"translateX(-30px)",md:""}
+          }}
+        >
           <img
             src={stats}
             alt="My Logo"
             style={{
-              backgroundAttachment: "fixed",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "contain",
+              backgroundSize: "cover",
+              objectFit:'cover',
               width: "100%",
               height: "100%",
+           
             }}
           />
-        </Grid2>
-      </Grid2>
+        </Box>
+      </Box>
 
       <ScrollToTopButton />
       <TelegramButton />

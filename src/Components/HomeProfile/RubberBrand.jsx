@@ -1,10 +1,24 @@
-
 function RubberBrand() {
   return (
-    <div>
-    Coming Soon
+    <div
+      className="blur"
+      style={{
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor:"black",
+        borderRadius:'15px'
+      }}
+    >
+      <p
+        className="text-gradient"
+        style={{ fontSize: "45px", textTransform: "capitalize" }}
+      >
+        Coming Soon
+      </p>
     </div>
-  )
+  );
 }
 
-export default RubberBrand
+export default RubberBrand;
