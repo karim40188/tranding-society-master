@@ -29,7 +29,7 @@ export function DarkModeContextProvider({ children }) {
       console.log(prevMode);
       return !prevMode;
     });
-  let baseUrl = "http://laravelapi.tradingsociety.net";
+  let baseUrl = "https://laravelapi.tradingsociety.net/api/v1";
   return (
     <DarkModeContext.Provider
       value={{ darkMode, setDarkMode, toggleMode, baseUrl }}

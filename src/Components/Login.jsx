@@ -11,7 +11,7 @@ import {useContext} from "react"
 import { DarkModeContext } from "./context/Context";
 
 function Login() {
-
+ي
   let [err, setErr] = useState(false);
   let {baseUrl}=useContext(DarkModeContext)
   let navigate = useNavigate();
@@ -23,7 +23,7 @@ function Login() {
       );
       if (res?.data?.status === true) {
         localStorage.setItem("token", res?.data?.token);
-        navigate("/");
+        navigate("/home");
       }
 
       console.log(res)
@@ -42,7 +42,6 @@ function Login() {
 
     password: Yup.string()
       .required("password is required")
-      .matches(/^\w{8,}$/, "Password must be at least 8 characters long"),
   });
   let formik = useFormik({
     initialValues: {
@@ -211,8 +210,12 @@ function Login() {
               height: "40px",
             }}
             type="submit"
+
+          onClick={()=>{
+            navigate('/home')
+          }}
           >
-            Sign up
+            Sign In
           </Button>
         </Box>
       </Box>
